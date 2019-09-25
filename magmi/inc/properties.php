@@ -80,7 +80,7 @@ class Properties
     public function write_ini_file($assoc_arr, $path, $has_sections = false)
     {
         $content = "";
-        if (count($assoc_arr) > 0) {
+        if (is_array($assoc_arr) && count($assoc_arr) > 0) {
             if ($has_sections) {
                 foreach ($assoc_arr as $key => $elem) {
                     $content .= "[" . $key . "]\n";
