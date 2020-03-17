@@ -14,22 +14,22 @@
 				<option value="local"
 					<?php if ($this->getParam("CSV:importmode", "local")=="local") {
     ?>
-					selected="selected" <?php 
+					selected="selected" <?php
 }?>>Local</option>
 				<option value="remote"
 					<?php if ($this->getParam("CSV:importmode", "local")=="remote") {
-    ?>
-					selected="selected" <?php 
-}?>>Remote</option>
+        ?>
+					selected="selected" <?php
+    }?>>Remote</option>
 		</select>
 
 	</ul>
 
 	<div id="localcsv"
 		<?php if ($this->getParam("CSV:importmode", "local")=="remote") {
-    ?>
-		style="display: none" <?php 
-}?>>
+        ?>
+		style="display: none" <?php
+    }?>>
 		<ul class="formline">
 			<li class="label">CSVs base directory</li>
 			<li class="value"><input type="text" name="CSV:basedir"
@@ -48,9 +48,9 @@
 
 	<div id="remotecsv"
 		<?php if ($this->getParam("CSV:importmode", "local")=="local") {
-    ?>
-		style="display: none" <?php 
-}?>>
+        ?>
+		style="display: none" <?php
+    }?>>
 		<ul class="formline">
 			<li class="label">Remote CSV url</li>
 			<li class="value"><input type="text" name="CSV:remoteurl"
@@ -59,9 +59,9 @@
 				style="width: 400px"><input type="checkbox"
 				id="CSV:forcedl" name="CSV:forcedl"
 				<?php if ($this->getParam("CSV:forcedl", false)==true) {
-    ?>
-				checked="checked" <?php 
-}?>>Force Download</li>
+        ?>
+				checked="checked" <?php
+    }?>>Force Download</li>
 		</ul>
 
 		<div id="remotecookie">
@@ -75,14 +75,14 @@
 		</div>
 		<input type="checkbox" id="CSV:remoteauth" name="CSV:remoteauth"
 			<?php  if ($this->getParam("CSV:remoteauth", false)==true) {
-     ?>
-			checked="checked" <?php 
- }?>>authentication needed
+        ?>
+			checked="checked" <?php
+    }?>>authentication needed
 		<div id="remoteauth"
 			<?php  if ($this->getParam("CSV:remoteauth", false)==false) {
-     ?>
-			style="display: none" <?php 
- }?>>
+        ?>
+			style="display: none" <?php
+    }?>>
 			<div class="remoteuserpass">
 				<ul class="formline">
 					<li class="label">User</li>
@@ -118,17 +118,17 @@
 <div class="">
 	<input type="checkbox" name="CSV:noheader"
 		<?php if ($this->getParam("CSV:noheader", false)==true) {
-    ?>
-		checked="checked" <?php 
-}?>> Headerless CSV (Use Column Mapper Plugin
+        ?>
+		checked="checked" <?php
+    }?>> Headerless CSV (Use Column Mapper Plugin
 	to set processable column names)
 </div>
 <div class="">
 	<input type="checkbox" name="CSV:allowtrunc"
 		<?php if ($this->getParam("CSV:allowtrunc", false)==true) {
-    ?>
-		checked="checked" <?php 
-}?>> Allow truncated lines (bypasses data line
+        ?>
+		checked="checked" <?php
+    }?>> Allow truncated lines (bypasses data line
 	structure correlation with headers)
 </div>
 
@@ -138,13 +138,13 @@ $hdline = $this->getParam("CSV:headerline", "");
 $malformed = ($hdline != "" && $hdline != 1)?>
 <input type="checkbox" id="malformedcb" <?php if ($malformed) {
     ?>
-	checked="checked" <?php 
+	checked="checked" <?php
 }?> />
 Malformed CSV (column list line not at top of file)
 <div id="malformed" <?php if (!$malformed) {
-    ?> style="display: none"
-	<?php 
-}?>>
+        ?> style="display: none"
+	<?php
+    }?>>
 	<span class="">CSV Header at line:</span><input type="text"
 		id="CSV:headerline" name="CSV:headerline" maxlength="7" size="7"
 		value="<?php echo $hdline?>">

@@ -215,6 +215,7 @@ class CustomOptionsItemProcessor extends Magmi_ItemProcessor
                 case 'field':
                 case 'area':
                     $opt['max_characters'] = $sort_order;
+                    // no break
                 case 'date':
                 case 'date_time':
                 case 'time':
@@ -222,7 +223,6 @@ class CustomOptionsItemProcessor extends Magmi_ItemProcessor
                     $opt['price'] = $price;
                     $opt['sku'] = $sku;
                     break;
-                /* NO BREAK */
                 case 'drop_down':
                 case 'radio':
                 case 'checkbox':

@@ -12,7 +12,7 @@
 	<input type="checkbox" name="<?php echo $fullName?>_cb" id="<?php echo $fullName?>_cb"
 		<?php if ($self->getParam($fullName, $default)=="on") {
     ?>
-		checked="checked" <?php 
+		checked="checked" <?php
 }?>> <?php echo $description?>
 	<input type="hidden" id="<?php echo $fullName ?>_hf" name="<?php echo $fullName?>" value="<?php echo $currentValue ?>"/>
 	<script type="text/javascript">

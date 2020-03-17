@@ -10,55 +10,60 @@ require_once("magmi_engine.php");
  *
  */
 
-class Magmi_Auth extends Magmi_Engine {
-    
+class Magmi_Auth extends Magmi_Engine
+{
     private $user;
     private $pass;
 
-    public function __construct($user,$pass){
+    public function __construct($user, $pass)
+    {
         parent::__construct();
         $this->user = $user;
         $this->pass = $pass;
         $this->initialize();
         try {
-			$this->connectToMagento();
-			$this->_hasDB = true;
+            $this->connectToMagento();
+            $this->_hasDB = true;
             $this->disconnectFromMagento();
-		}catch (Exception $e){
-			$this->_hasDB = false;
-		}
-        
+        } catch (Exception $e) {
+            $this->_hasDB = false;
+        }
     }
 
     
-    public function authenticate(){
-		if (!$this->_hasDB) return ($this->user == 'magmi' && $this->pass == 'magmi');
-		$tn=$this->tablename('admin_user');
-        $result = $this->select("SELECT * FROM $tn WHERE username = ?",array($this->user))->fetch(PDO::FETCH_ASSOC);
-        return $result && $this->validatePass($result['password'],$this->pass);
+    public function authenticate()
+    {
+        if (!$this->_hasDB) {
+            return ($this->user == 'magmi' && $this->pass == 'magmi');
+        }
+        $tn=$this->tablename('admin_user');
+        $result = $this->select("SELECT * FROM $tn WHERE username = ?", array($this->user))->fetch(PDO::FETCH_ASSOC);
+        return $result && $this->validatePass($result['password'], $this->pass);
     }
     
-    private function validatePass($hash,$pass){
+    private function validatePass($hash, $pass)
+    {
         #first try : standard CE magento hash
 
-        $hash = explode(":",$hash);
+        $hash = explode(":", $hash);
         $cecheck = md5($hash[1] . $pass);
-        $eecheck = hash('sha256',$hash[1] . $pass);
+        $eecheck = hash('sha256', $hash[1] . $pass);
         $eecheckArgo = $this->getArgonHash($pass, $hash[1]);
         $valid = ($cecheck == $hash[0] || $eecheck == $hash[0] || $eecheckArgo == $hash[0]);
 
         return $valid;
     }
-	
+    
     /**
      * Generate Argon2ID13 hash.
      * Got from \Magento\Framework\Encryption\Encryptor
      *
      * @param string $data
      * @param string $salt
-     * @return string      
-     */	
-    private function getArgonHash($data, $salt = ''){
+     * @return string
+     */
+    private function getArgonHash($data, $salt = '')
+    {
         $salt = empty($salt) ?
             random_bytes(SODIUM_CRYPTO_PWHASH_SALTBYTES) :
             substr($salt, 0, SODIUM_CRYPTO_PWHASH_SALTBYTES);

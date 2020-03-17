@@ -9,12 +9,12 @@
 	<li><select name="SQL:dbtype" id="SQL:dbtype">
 			<option value="mysql" <?php if ($dbtype=="mysql") {
     ?>
-				selected="selected" <?php 
+				selected="selected" <?php
 }?>>MySQL</option>
 			<option value="other" <?php if ($dbtype=="other") {
-    ?>
-				selected="selected" <?php 
-}?>>Other</option>
+        ?>
+				selected="selected" <?php
+    }?>>Other</option>
 	</select></li>
 </ul>
 <div id="options_container">
@@ -26,23 +26,22 @@
 <?php $dr=$this->getParam("SQL:queryfile");?>
 <?php $sqlfiles=$this->getSQLFileList();?>
 <?php if (count($sqlfiles)>0) {
-    ?>
+        ?>
 
 <select name="SQL:queryfile">
 	<?php foreach ($sqlfiles as $curfile):?>
 	<option <?php if ($curfile==$dr) {
-    ?> selected=selected <?php 
-}
-    ?>
+            ?> selected=selected <?php
+        } ?>
 				value="<?php echo $curfile?>"><?php echo basename($curfile)?></option>
 	<?php endforeach?>
 </select>
-<?php 
-} else {
-    ?>
+<?php
+    } else {
+        ?>
 	<span class="error">No SQL files detected in <?php echo $this->getPluginDir()."/requests"?></span>
-<?php 
-}?>
+<?php
+    }?>
 </li>
 </ul>
 <script type="text/javascript">

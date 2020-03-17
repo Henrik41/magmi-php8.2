@@ -60,7 +60,8 @@ class Magmi_RemoteAgentPlugin extends Magmi_GeneralImportPlugin
             $err = error_get_last();
             $this->log(
                 "Cannot deploy Remote agent to $url (" . $err['message'] . "), remote file operation & indexing disabled",
-                "warning");
+                "warning"
+            );
         }
         return $ok;
     }

@@ -89,9 +89,15 @@ class RelatedProducts extends Magmi_ItemProcessor
 		  JOIN " . $this->tablename("catalog_product_entity") . " as cpe2 ON cpe2.sku!=cpe.sku AND (cpe2.sku=? OR $j2)
 		  JOIN " . $this->tablename("catalog_product_link_type") . " as cplt ON cplt.code='relation'
 		  WHERE cpe.sku=? OR $j";
-            $this->delete($sql,
-                array_merge(array($item["sku"]), $joininfo["data"]["cpe2.sku"], array($item["sku"]),
-                    $joininfo["data"]["cpe.sku"]));
+            $this->delete(
+                $sql,
+                array_merge(
+                    array($item["sku"]),
+                    $joininfo["data"]["cpe2.sku"],
+                    array($item["sku"]),
+                    $joininfo["data"]["cpe.sku"]
+                )
+            );
         }
     }
 
@@ -206,8 +212,12 @@ class RelatedProducts extends Magmi_ItemProcessor
                 }
                 $sql = "INSERT IGNORE INTO " . $this->tablename("catalog_product_link") .
                      " (link_type_id,product_id,linked_product_id)  $bsql";
-                $data = array_merge(array($item["sku"]), $joininfo["data"]["cpe2.sku"], array($item["sku"]),
-                    $joininfo["data"]["cpe.sku"]);
+                $data = array_merge(
+                    array($item["sku"]),
+                    $joininfo["data"]["cpe2.sku"],
+                    array($item["sku"]),
+                    $joininfo["data"]["cpe.sku"]
+                );
                 if (!$fullrel) {
                     $data = array_merge($data, $joininfo["data"]["cpe.sku"], $joininfo["data"]["cpe.sku"]);
                 }

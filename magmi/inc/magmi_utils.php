@@ -99,7 +99,7 @@ function truepath($path)
     if (strpos($path, ':') === false && $unipath) {
         $path = getcwd() . DIRECTORY_SEPARATOR . $path;
     }
-        // resolve path parts (single dot, double dot and double delimiters)
+    // resolve path parts (single dot, double dot and double delimiters)
     $path = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
     $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
     $absolutes = array();

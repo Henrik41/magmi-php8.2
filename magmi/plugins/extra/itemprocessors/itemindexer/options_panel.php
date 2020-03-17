@@ -17,12 +17,12 @@
  		<select name="OTFI:usecatinurl">
 				<option value="1" <?php if ($usecat==1) {
     ?> selected="selected"
-					<?php 
+					<?php
 }?>>Yes</option>
 				<option value="0" <?php if ($usecat==0) {
-    ?> selected="selected"
-					<?php 
-}?>>No</option>
+        ?> selected="selected"
+					<?php
+    }?>>No</option>
 		</select>
 		</li>
 	</ul>

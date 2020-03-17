@@ -9,7 +9,7 @@ class Magmi_ItemGenerator extends Magmi_DataSource
 
     public function initialize($params)
     {
-        $this->_tpl=json_decode($params["ITG:template"],true);
+        $this->_tpl=json_decode($params["ITG:template"], true);
         $this->_maxloop=intval($params["ITG:nbitems"]);
     }
 
@@ -19,13 +19,11 @@ class Magmi_ItemGenerator extends Magmi_DataSource
     }
     public function startImport()
     {
-
         $this->_loop=0;
     }
 
     public function endImport()
     {
-
     }
 
     public function getItemFromTemplate($loopnum)
@@ -34,15 +32,13 @@ class Magmi_ItemGenerator extends Magmi_DataSource
         $item["##loop##"]=$loopnum;
         $toparse=array_keys($this->_tpl);
         // parse static or simple templated values first
-        foreach($toparse as $k)
-        {
+        foreach ($toparse as $k) {
             $v=$this->_tpl[$k];
-            $newv=str_replace("##loop##",$this->_loop,$v);
-           $pi=Magmi_ValueParser::getParseInfo($newv,array("item"=>$item));
+            $newv=str_replace("##loop##", $this->_loop, $v);
+            $pi=Magmi_ValueParser::getParseInfo($newv, array("item"=>$item));
 
-            if(count($pi))
-            {
-                $newv=Magmi_ValueParser::parseValue($this->_tpl[$k],array("item"=>$item));
+            if (count($pi)) {
+                $newv=Magmi_ValueParser::parseValue($this->_tpl[$k], array("item"=>$item));
             }
             $item[$k]=$newv;
         }
@@ -61,8 +57,7 @@ class Magmi_ItemGenerator extends Magmi_DataSource
 
     public function getNextRecord()
     {
-        if($this->_loop<$this->_maxloop)
-        {
+        if ($this->_loop<$this->_maxloop) {
             $this->_loop++;
             return $this->getItemFromTemplate($this->_loop);
         }

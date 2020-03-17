@@ -142,7 +142,7 @@ foreach (array("error", "warning") as $gtype)
 		id="<?php echo $gtype?>_link">Show Details</a>
 </div>
 <div id="log_<?php echo $gtype?>_details"></div>
-<?php 
+<?php
     }?>
 <?php endforeach?>
 
@@ -178,8 +178,8 @@ if (!is_array($skipped) && $skipped > 0)
 	<?php if ($parser->getData("ended")):?>
 <div
 	class='log_end <?php if (count($parser->getData("error"))>0) {
-    ?> log_error<?php 
-}?>'>
+        ?> log_error<?php
+    }?>'>
 	<span><a href='magmi.php'>Back to Configuration Page</a></span>
 </div>
 <script type="text/javascript">endImport();</script>

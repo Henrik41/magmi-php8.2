@@ -32,14 +32,13 @@ class grouppriceprocessor extends Magmi_ItemProcessor
             }
             
             if (!empty($group_ids)) {
-                
                 $sql = 'SELECT * FROM ' . $table_name . '
                               WHERE entity_id=?
                                 AND customer_group_id IN (' . implode(', ', $group_ids) . ')
                                 AND website_id IN (' . implode(', ', $website_ids) . ')';
                 $rows = $this->select($sql, array($params['product_id']))->fetchAll();
                 
-                foreach ($rows as $row){
+                foreach ($rows as $row) {
                     $reusableIds[] = $row['value_id'];
                 }
 
@@ -110,10 +109,9 @@ class grouppriceprocessor extends Magmi_ItemProcessor
                 if ($id = $this->selectone($sql, strtoupper($groupname), "customer_group_id")) {
                     $this->_groups[$col] = array('name'=>$groupname,'id'=>$id);
                 } else {
-                    if($groupname == 'NOT LOGGED IN'){
+                    if ($groupname == 'NOT LOGGED IN') {
                         $this->_groups[$col] = array('name'=>$groupname,'id'=>$id);
-                    }
-                    else{
+                    } else {
                         $this->_groups[$col] =
                             array('name'=>$groupname,'id'=>$this->createGroup($groupname));
                     }

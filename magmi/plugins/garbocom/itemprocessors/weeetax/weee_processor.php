@@ -54,9 +54,11 @@ class WeeetaxItemProcessor extends Magmi_ItemProcessor
                     // handle wee tax value for all defined websites in import row
                     foreach ($wsids as $wsid) {
                         $inserts[] = "(?,?,?,?,?,?,?)";
-                        $data = array_merge($data,
+                        $data = array_merge(
+                            $data,
                             array($wsid, $pid, $country, $item[$wattr], '*', $attrinfo["attribute_id"],
-                                $this->getProductEntityType()));
+                                $this->getProductEntityType())
+                        );
                     }
                 }
             }

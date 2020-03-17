@@ -20,7 +20,8 @@ class Magmi_PluginHelper
         $this->plugin_dir = realpath(dirname(dirname(__FILE__)) . DIRSEP . "plugins");
         // set include path to inclue plugins inc & base dir
         set_include_path(
-            ini_get("include_path") . PATH_SEPARATOR . "$this->plugin_dir/inc" . PATH_SEPARATOR . "$this->base_dir");
+            ini_get("include_path") . PATH_SEPARATOR . "$this->plugin_dir/inc" . PATH_SEPARATOR . "$this->base_dir"
+        );
         // add base classes in context
         require_once("magmi_item_processor.php");
         require_once("magmi_datasource.php");
@@ -97,8 +98,10 @@ class Magmi_PluginHelper
         }
         foreach ($pltypes as $pltype) {
             if (!isset(self::$_plugins_cache[$pltype])) {
-                self::$_plugins_cache[$pltype] = self::initPluginInfos($this->_plmeta[$pltype][0],
-                    $this->_plmeta[$pltype][1]);
+                self::$_plugins_cache[$pltype] = self::initPluginInfos(
+                    $this->_plmeta[$pltype][0],
+                    $this->_plmeta[$pltype][1]
+                );
             }
         }
     }

@@ -279,8 +279,9 @@ abstract class Magmi_Engine extends DbHelper
             $order += count($this->_activeplugins[$family]);
         }
         
-        if (is_array($this->_activeplugins) && isset($this->_activeplugins[$family]) && isset($this->_activeplugins[$family][$order]))
+        if (is_array($this->_activeplugins) && isset($this->_activeplugins[$family]) && isset($this->_activeplugins[$family][$order])) {
             return $this->_activeplugins[$family][$order];
+        }
     }
 
     /*
@@ -289,7 +290,7 @@ abstract class Magmi_Engine extends DbHelper
     public function callPlugins($types, $callback, &$data = null, $params = null, $break = true)
     {
         $result = true;
-      //  $tclass=get_class($this);
+        //  $tclass=get_class($this);
         // If plugin type list is not an array , process it as string
         if (!is_array($types)) {
             // If plugin is not wildcard , build array of types based on comma separated string
@@ -301,7 +302,7 @@ abstract class Magmi_Engine extends DbHelper
         }
 
         // Timing initialization (global processing step)
-       // $this->_timecounter->initTime($callback, get_class($this));
+        // $this->_timecounter->initTime($callback, get_class($this));
 
         // Iterate on plugin types (families)
         foreach ($types as $ptype) {
@@ -318,7 +319,9 @@ abstract class Magmi_Engine extends DbHelper
                         // either with or without parameters,or parameters & data
                         // store execution result
                         $callres = ($data == null ? ($params == null ? $pinst->$callback() : $pinst->$callback($params)) : $pinst->$callback(
-                            $data, $params));
+                            $data,
+                            $params
+                        ));
                         // End Timing for current plugin in current step
                         //$this->_timecounter->exitTime($callback, get_class($pinst));
                         // if plugin call result is false with data set
@@ -332,7 +335,7 @@ abstract class Magmi_Engine extends DbHelper
                             // Call the plugin processing loop callback , time it
                             //$this->_timecounter->initTime($callback, $pclass);
                             $this->$cb($pinst, $data, $result);
-                           // $this->_timecounter->exitTime($callback, $pclass);
+                            // $this->_timecounter->exitTime($callback, $pclass);
                         }
                         // if last result plugin is false & break flag
                         if ($result === false && $break) {

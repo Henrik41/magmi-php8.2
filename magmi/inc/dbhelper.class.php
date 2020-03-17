@@ -499,7 +499,7 @@ class DBHelper
         if ($this->_intrans) {
             $this->_db->rollBack();
             $this->_intrans = false;
-           // $this->logdebug("-- TRANSACTION ROLLBACK --");
+            // $this->logdebug("-- TRANSACTION ROLLBACK --");
         }
     }
 

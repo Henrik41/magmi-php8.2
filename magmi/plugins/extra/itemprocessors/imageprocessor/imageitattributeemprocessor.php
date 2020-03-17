@@ -193,8 +193,16 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
                 $label = $item[$attrcode . "_label"];
             }
             $targetsids = $this->getStoreIdsForStoreScope($item["store"]);
-            $vid = $this->addImageToGallery($pid, $storeid, $attrdesc, $imagefile, $targetsids, $label, $exclude,
-                $attrdesc["attribute_id"]);
+            $vid = $this->addImageToGallery(
+                $pid,
+                $storeid,
+                $attrdesc,
+                $imagefile,
+                $targetsids,
+                $label,
+                $exclude,
+                $attrdesc["attribute_id"]
+            );
         }
         return $ovalue;
     }
@@ -289,9 +297,16 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
      * @param string $imgname
      *            : image file name (relative to /products/media in magento dir)
      */
-    public function addImageToGallery($pid, $storeid, $attrdesc, $imgname, $targetsids, $imglabel = null, $excluded = false,
-                                      $refid = null)
-    {
+    public function addImageToGallery(
+        $pid,
+        $storeid,
+        $attrdesc,
+        $imgname,
+        $targetsids,
+        $imglabel = null,
+        $excluded = false,
+        $refid = null
+    ) {
         $gal_attinfo = $this->getAttrInfo("media_gallery");
         $tg = $this->tablename('catalog_product_entity_media_gallery');
         $tgv = $this->tablename('catalog_product_entity_media_gallery_value');
@@ -578,8 +593,12 @@ class ImageAttributeItemProcessor extends Magmi_ItemProcessor
             if (isset($item[$attrcode . "_label"]) && !isset($item[$attrcode])) {
                 // force label update
                 $attrdesc = $this->getAttrInfo($attrcode);
-                $this->updateLabel($attrdesc, $pid, $this->getItemStoreIds($item, $attrdesc["is_global"]),
-                    $item[$attrcode . "_label"]);
+                $this->updateLabel(
+                    $attrdesc,
+                    $pid,
+                    $this->getItemStoreIds($item, $attrdesc["is_global"]),
+                    $item[$attrcode . "_label"]
+                );
                 unset($attrdesc);
             }
         }

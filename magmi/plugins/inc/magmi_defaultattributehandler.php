@@ -49,7 +49,9 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
             $cols = array_merge($cols, $this->_missingcols, $this->_missingattrs);
             $this->log(
                 "Newly created items will have default values for columns:" .
-                     implode(",", array_merge($this->_missingcols, $this->_missingattrs)), "startup");
+                     implode(",", array_merge($this->_missingcols, $this->_missingattrs)),
+                "startup"
+            );
         }
     }
 
@@ -214,7 +216,7 @@ class Magmi_DefaultAttributeItemProcessor extends Magmi_ItemProcessor
         }
         $ovalue = deleteifempty($ivalue);
         $attid = $attrdesc["attribute_id"];
-         // --- ExtensionsMall multiselect 1.9.3 varchar -> text ----
+        // --- ExtensionsMall multiselect 1.9.3 varchar -> text ----
         if ($attrdesc["frontend_input"] == "multiselect") {
             // if empty delete entry
             if ($ivalue == "") {

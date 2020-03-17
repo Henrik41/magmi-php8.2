@@ -285,9 +285,11 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
         $etiCondition = array('entity_type_id' => $this->getProductEntityType());
 
         // dynamically add product entity type id to decoder options
-        $decoderArgs = array_merge_recursive($this->ATTRIBUTE_SET_ASSOCIATION_DECODER_ARGS,
-                array('attribute_set_name'=>array('conditions' =>array('entity_type_id' => $this->getProductEntityType())),
-                        'attribute_code'=>array('conditions' =>array('entity_type_id' => $this->getProductEntityType()))));
+        $decoderArgs = array_merge_recursive(
+            $this->ATTRIBUTE_SET_ASSOCIATION_DECODER_ARGS,
+            array('attribute_set_name'=>array('conditions' =>array('entity_type_id' => $this->getProductEntityType())),
+                        'attribute_code'=>array('conditions' =>array('entity_type_id' => $this->getProductEntityType())))
+        );
 
         $decoder = new Name2IdDecoder($this, $decoderArgs);
         $this->updateGeneric($csvreader, $this->ATTRIBUTE_SET_ASSOCIATION_ARGS, $etiCondition, $etiCondition, $decoder);
@@ -528,10 +530,9 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
         $givenNameValues = new MultiDimArray(); // store given Attribute names for faster pruning in second loop
 
         // iterate over all given records from CSV
-        while ($record = $csvreader->getNextRecord() ) {
+        while ($record = $csvreader->getNextRecord()) {
             try {
-                if(Magmi_StateManager::getState()=='canceled')
-                {
+                if (Magmi_StateManager::getState()=='canceled') {
                     break;
                 }
                 // counters and helper variables for statistics
@@ -623,7 +624,7 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
                                 }
                             }
                             
-                            // if configured, perform "inner" import 
+                            // if configured, perform "inner" import
                             if (isset($inner)) {
                                 foreach ($inner as $innerColName => $innerConfig) {
                                     if (isset($record[$innerColName])) {
@@ -667,7 +668,7 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
                                 }
                             }
 
-                            // if configured, perform "inner" import 
+                            // if configured, perform "inner" import
                             if (isset($inner)) {
                                 foreach ($inner as $innerColName => $innerConfig) {
                                     if (isset($record[$innerColName])) {
@@ -715,9 +716,8 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
             }
         }
 
-        if(Magmi_StateManager::getState()=='canceled')
-        {
-            $this->log("Cancelled ","warning");
+        if (Magmi_StateManager::getState()=='canceled') {
+            $this->log("Cancelled ", "warning");
             return false;
         }
 
@@ -782,9 +782,11 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
             // prepare array with database ids as keys for entries which should not be pruned as the elements are related to system attributes
             $keepSystemIds = array();
             if ($this->getParam($elementPrefix.":prune_keep_system_attributes", "off") == "on") {
-                $sql = preg_replace_callback('/(##[a-zA-Z_]*##)/Uis', function ($ms) { foreach ($ms as $m) {
-    return str_replace('##', '', $this->tablename($m));
-}}, $fetchSystemAttributeIdsSql);
+                $sql = preg_replace_callback('/(##[a-zA-Z_]*##)/Uis', function ($ms) {
+                    foreach ($ms as $m) {
+                        return str_replace('##', '', $this->tablename($m));
+                    }
+                }, $fetchSystemAttributeIdsSql);
                 $idData = $this->select($sql);
                 foreach ($idData as $record) {
                     $keepSystemIds[reset($record)] = 1;
@@ -793,7 +795,7 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
 
             // just for counting records...
             $currentRecordNo = 0;
-            $pruneonly=$this->getParam($elementPrefix.":prune_only","");
+            $pruneonly=$this->getParam($elementPrefix.":prune_only", "");
 
             // now loop aver all records from database...
             // again use rewind(), valid(), next() and offsetSet() because the short notation and foreach do not like array indexe
@@ -813,13 +815,11 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
 
                     $to_delete=!$givenNameValues->offsetExists($currentNames);
 
-                    if($pruneonly!="" && $to_delete && !is_int($currentNames[0]))
-                    {
-                        $to_delete = $to_delete && preg_match("/$pruneonly/",$currentNames[0]);
+                    if ($pruneonly!="" && $to_delete && !is_int($currentNames[0])) {
+                        $to_delete = $to_delete && preg_match("/$pruneonly/", $currentNames[0]);
                     }
 
-                    if($to_delete)
-                    {
+                    if ($to_delete) {
                         $to_delete = $to_delete && !$keepNamesArray->offsetExistsPartly($currentNames) && !isset($keepSystemIds[$currentId]);
                     }
 
@@ -947,7 +947,13 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
  */
 class Statistics
 {
-    public $pruned=0,$kept=0,$inserted=0,$updated=0,$nothingToUpdate=0,$deleted=0,$doubled=0;
+    public $pruned=0;
+    public $kept=0;
+    public $inserted=0;
+    public $updated=0;
+    public $nothingToUpdate=0;
+    public $deleted=0;
+    public $doubled=0;
 
     /**
      * <p>Adds the calues of another Statistics instance to thie instance's counters.</p>

@@ -42,23 +42,23 @@
 <select name="IMG:writemode">
 		<option value="keep" <?php if ($iwm=="keep") {
     ?> selected="selected"
-			<?php 
+			<?php
 }?>>Keep existing images</option>
 		<option value="override" <?php if ($iwm=="override") {
-    ?>
-			selected="selected" <?php 
-}?>>Override existing images</option>
+        ?>
+			selected="selected" <?php
+    }?>>Override existing images</option>
 	</select> <span>Assign only existing images</span> <select
 		name="IMG:existingonly">
 <?php $existonly=$this->getParam("IMG:existingonly", "no");?>
 <option value="yes" <?php if ($existonly=="yes") {
-    ?> selected="selected"
-			<?php 
-}?>>Yes</option>
+        ?> selected="selected"
+			<?php
+    }?>>Yes</option>
 		<option value="no" <?php if ($existonly=="no") {
-    ?> selected="selected"
-			<?php 
-}?>>No</option>
+        ?> selected="selected"
+			<?php
+    }?>>No</option>
 	</select>
 </div>
 <div id="IMG:err_attrsetup">
@@ -75,13 +75,13 @@
 	<span>Import into DB (use only if Magento Media Storage is set to Database)</span> <select name="IMG:storeindb">
 <?php $qstoreindb=$this->getParam("IMG:storeindb", "no");?>
 <option value="yes" <?php if ($qstoreindb=="yes") {
-    ?> selected="selected"
-			<?php 
-}?>>Enable</option>
+        ?> selected="selected"
+			<?php
+    }?>>Enable</option>
 		<option value="no" <?php if ($qstoreindb=="no") {
-    ?> selected="selected"
-			<?php 
-}?>>Disable</option>
+        ?> selected="selected"
+			<?php
+    }?>>Disable</option>
 	</select>
 </div>
 
@@ -89,13 +89,13 @@
 	<span>Debug mode</span> <select name="IMG:debug">
 <?php $qdd=$this->getParam("IMG:debug", "no");?>
 <option value="yes" <?php if ($qdd=="yes") {
-    ?> selected="selected"
-			<?php 
-}?>>Enable</option>
+        ?> selected="selected"
+			<?php
+    }?>>Enable</option>
 		<option value="no" <?php if ($qdd=="no") {
-    ?> selected="selected"
-			<?php 
-}?>>Disable</option>
+        ?> selected="selected"
+			<?php
+    }?>>Disable</option>
 	</select>
 </div>
 
@@ -114,16 +114,16 @@
 		<li class="value"><input type="checkbox" id="IMG:remoteauth"
 			name="IMG:remoteauth"
 			<?php  if ($this->getParam("IMG:remoteauth", false)==true) {
-     ?>
-			checked="checked" <?php 
- }?>>authentication needed</li>
+        ?>
+			checked="checked" <?php
+    }?>>authentication needed</li>
 	</ul>
 
 	<div id="imgremoteauth"
 		<?php  if ($this->getParam("IMG:remoteauth", false)==false) {
-     ?>
-		style="display: none" <?php 
- }?>>
+        ?>
+		style="display: none" <?php
+    }?>>
 		<ul class="formline">
 			<li class="label">User</li>
 			<li class="value"><input type="text" name="IMG:remoteuser"
@@ -145,13 +145,13 @@
 	<li class="value"><select name="IMG:predlcheck">
 <?php $qdlc=$this->getParam("IMG:predlcheck", "yes");?>
 <option value="yes" <?php if ($qdlc=="yes") {
-    ?> selected="selected"
-				<?php 
-}?>>Enable</option>
+        ?> selected="selected"
+				<?php
+    }?>>Enable</option>
 			<option value="no" <?php if ($qdlc=="no") {
-    ?> selected="selected"
-				<?php 
-}?>>Disable</option>
+        ?> selected="selected"
+				<?php
+    }?>>Disable</option>
 	</select></li>
 </ul>
 

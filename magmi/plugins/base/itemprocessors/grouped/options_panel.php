@@ -33,12 +33,12 @@
 	<li class="value"><select name="APIGRP:nolink">
 			<option value="0" <?php if ($this->getParam("APIGRP:nolink", 0)==0) {
     ?>
-				selected="selected" <?php 
+				selected="selected" <?php
 }?>>Yes</option>
 			<option value="1" <?php if ($this->getParam("APIGRP:nolink", 0)==1) {
-    ?>
-				selected="selected" <?php 
-}?>>No</option>
+        ?>
+				selected="selected" <?php
+    }?>>No</option>
 	</select></li>
 </ul>
 <ul class="formline">
@@ -47,14 +47,14 @@
 	<li class="value"><select name="APIGRP:groupedbeforegrp">
 			<option value="0"
 				<?php if ($this->getParam("APIGRP:groupedbeforegrp")==0) {
-    ?>
-				selected="selected" <?php 
-}?>>No</option>
+        ?>
+				selected="selected" <?php
+    }?>>No</option>
 			<option value="1"
 				<?php if ($this->getParam("APIGRP:groupedbeforegrp")==1) {
-    ?>
-				selected="selected" <?php 
-}?>>Yes</option>
+        ?>
+				selected="selected" <?php
+    }?>>Yes</option>
 	</select></li>
 </ul>
 <ul class="formline">
@@ -63,21 +63,21 @@
 <?php $v=$this->getParam("APIGRP:updgroupedvis", 0)?>
 <select name="APIGRP:updgroupedvis">
 			<option value="0" <?php if ($v==0) {
-    ?> selected="selected" <?php 
-}?>>No</option>
+        ?> selected="selected" <?php
+    }?>>No</option>
 			<option value="1" <?php if ($v==1) {
-    ?> selected="selected" <?php 
-}?>>Not
+        ?> selected="selected" <?php
+    }?>>Not
 				Visible Individually</option>
 			<option value="2" <?php if ($v==2) {
-    ?> selected="selected" <?php 
-}?>>Catalog</option>
+        ?> selected="selected" <?php
+    }?>>Catalog</option>
 			<option value="3" <?php if ($v==3) {
-    ?> selected="selected" <?php 
-}?>>Search</option>
+        ?> selected="selected" <?php
+    }?>>Search</option>
 			<option value="4" <?php if ($v==4) {
-    ?> selected="selected" <?php 
-}?>>Catalog,
+        ?> selected="selected" <?php
+    }?>>Catalog,
 				Search</option>
 	</select>
 	</li>

@@ -183,7 +183,8 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
         if (count($confopts) == 0) {
             $this->log(
                 "No configurable attributes found for configurable sku: " . $item["sku"] . " cannot link simples.",
-                "warning");
+                "warning"
+            );
             return true;
         }
         // set product to have options & required
@@ -271,14 +272,14 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
 
                 foreach ($optids as $val=>$optid) {
                     // generate price info for each given website
-                   foreach ($wsids as $wsid) {
-                       $data[] = $psaid;
-                       $data[] = $optid;
-                       $data[] = $optplist[$val][0];
-                       $data[] = $optplist[$val][1];
-                       $data[] = $wsid;
-                       $ins[] = "(?,?,?,?,?)";
-                   }
+                    foreach ($wsids as $wsid) {
+                        $data[] = $psaid;
+                        $data[] = $optid;
+                        $data[] = $optplist[$val][0];
+                        $data[] = $optplist[$val][1];
+                        $data[] = $wsid;
+                        $ins[] = "(?,?,?,?,?)";
+                    }
                 }
 
                 $sql = "INSERT INTO $cpsap (`product_super_attribute_id`,`value_index`,`pricing_value`,`is_percent`,`website_id`) VALUES " .
@@ -328,8 +329,7 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
             $cols = array_unique(array_merge($cols, array("options_container")));
             $this->_use_defaultopc = true;
             $this->log("no options_container set, defaulting to :Block after product info", "startup");
-        }
-        else {
+        } else {
             $this->_use_defaultopc = false;
         }
     }

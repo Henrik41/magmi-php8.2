@@ -56,7 +56,6 @@ class CategoryImporter extends Magmi_ItemProcessor
      */
     public function initCats()
     {
-
         $t = $this->tablename("catalog_category_entity");
         $csg = $this->tablename("store_group");
         $cs = $this->tablename("store");
@@ -69,7 +68,8 @@ class CategoryImporter extends Magmi_ItemProcessor
 								JOIN $t as cce ON cce.entity_id=csg.root_category_id
 								JOIN $ea as ea ON ea.attribute_code='name'
 								JOIN $ccev as ccev ON ccev.attribute_id=ea.attribute_id AND ccev.entity_id=cce.entity_id
-		 ");
+		 "
+        );
         foreach ($result as $row) {
             $rootinfo = array("path"=>$row["path"],"name"=>$row["name"],
                 "rootarr"=>explode("/", $row["path"]));
@@ -155,7 +155,9 @@ class CategoryImporter extends Magmi_ItemProcessor
         // Search for existing category and returns its ID of it exists
         $cattrs["name"] = str_replace($this->_escapedtsep, $this->_tsep, $cattrs["name"]);
         $catid = $this->getExistingCategory($parentpath, $cattrs);
-        if ($catid != null) { return $catid; }
+        if ($catid != null) {
+            return $catid;
+        }
 
         // otherwise, get new category values from parent & siblings
         $cet = $this->tablename("catalog_category_entity");
@@ -303,7 +305,9 @@ class CategoryImporter extends Magmi_ItemProcessor
             } else {
                 $catpos[] = "0";
             }
-            $translation_option = array_values(array_filter($a, function ($option) { return stripos($option, '[') === 0; }));
+            $translation_option = array_values(array_filter($a, function ($option) {
+                return stripos($option, '[') === 0;
+            }));
             $translation_option_part = count($translation_option) ? '::' . $translation_option[0] : '';
             $options_part = count($options) ? '::' . join('::', $options) : '';
             $catparts[] = $a[0] . $options_part . $translation_option_part;
@@ -377,16 +381,24 @@ class CategoryImporter extends Magmi_ItemProcessor
 
     public function addTranslationForCategory($id, $attributes, $item)
     {
-        if (!isset($attributes['translated_name'])) return ;
+        if (!isset($attributes['translated_name'])) {
+            return ;
+        }
         // Convert store codes to ids excluding admin
         $store_ids = array_map(
-            function ($store) { return $this->stores[$store]; },
+            function ($store) {
+                return $this->stores[$store];
+            },
             array_filter(
                 explode(',', $item['store']),
-                function ($store) { return $store !== 'admin'; }
+                function ($store) {
+                    return $store !== 'admin';
+                }
             )
         );
-        if (empty($store_ids)) return ;
+        if (empty($store_ids)) {
+            return ;
+        }
 
         $attributes['name']     =  $attributes['translated_name'];
         $attributes['url_key']  =  $attributes['translated_url_key'];
@@ -415,8 +427,6 @@ class CategoryImporter extends Magmi_ItemProcessor
             $sql = "INSERT INTO $table (attribute_id,store_id,entity_id,value) VALUES " .
                  implode(",", $placeholders) . " ON DUPLICATE KEY UPDATE value=VALUES(`value`)";
             $this->insert($sql, $values);
-
-
         }
     }
 

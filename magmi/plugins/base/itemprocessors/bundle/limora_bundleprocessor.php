@@ -270,11 +270,17 @@ class Magmi_BundleItemProcessor extends Magmi_ItemProcessor
                     $option['code'] = $bundleOption[0];
                     $option['title'] = isset($bundleOption[1]) && $bundleOption[1] !== '' ? $bundleOption[1] : $bundleOption[0];
                     $option['type'] = isset($bundleOption[2]) && $bundleOption[2] !== '' ? $bundleOption[2] : $this->getConfiguredDefault(
-                        'option', 'type');
+                        'option',
+                        'type'
+                    );
                     $option['required'] = isset($bundleOption[3]) && $bundleOption[3] !== '' ? $bundleOption[3] : $this->getConfiguredDefault(
-                        'option', 'required');
+                        'option',
+                        'required'
+                    );
                     $option['position'] = isset($bundleOption[4]) && $bundleOption[4] !== '' ? $bundleOption[4] : $this->getConfiguredDefault(
-                        'option', 'position');
+                        'option',
+                        'position'
+                    );
 
                     $options[$option['code']] = $option;
                 }
@@ -375,7 +381,7 @@ class Magmi_BundleItemProcessor extends Magmi_ItemProcessor
             } else {
                 $sku['selection_id'] = $existingSku['selection_id'];
             }
-             //show in frontend fix (thx igi8819)
+            //show in frontend fix (thx igi8819)
 
 
             $sql = "INSERT IGNORE INTO $cpr (parent_id, child_id) VALUES(:parent_id, :child_id)";
@@ -408,17 +414,29 @@ class Magmi_BundleItemProcessor extends Magmi_ItemProcessor
                     $sku['option_code'] = $bundleSku[0];
                     $sku['sku'] = $bundleSku[1];
                     $sku['selection_qty'] = isset($bundleSku[2]) && $bundleSku[2] !== '' ? $bundleSku[2] : $this->getConfiguredDefault(
-                        'sku', 'selection_qty');
+                        'sku',
+                        'selection_qty'
+                    );
                     $sku['selection_can_change_qty'] = isset($bundleSku[3]) && $bundleSku[3] !== '' ? $bundleSku[3] : $this->getConfiguredDefault(
-                        'sku', 'selection_can_change_qty');
+                        'sku',
+                        'selection_can_change_qty'
+                    );
                     $sku['position'] = isset($bundleSku[4]) && $bundleSku[4] !== '' ? $bundleSku[4] : $this->getConfiguredDefault(
-                        'sku', 'position');
+                        'sku',
+                        'position'
+                    );
                     $sku['is_default'] = isset($bundleSku[5]) && $bundleSku[5] !== '' ? $bundleSku[5] : $this->getConfiguredDefault(
-                        'sku', 'is_default');
+                        'sku',
+                        'is_default'
+                    );
                     $sku['selection_price_value'] = isset($bundleSku[6]) && $bundleSku[6] !== '' ? $bundleSku[6] : $this->getConfiguredDefault(
-                        'sku', 'selection_price_value');
+                        'sku',
+                        'selection_price_value'
+                    );
                     $sku['selection_price_type'] = isset($bundleSku[7]) && $bundleSku[7] !== '' ? $bundleSku[7] : $this->getConfiguredDefault(
-                        'sku', 'selection_price_type');
+                        'sku',
+                        'selection_price_type'
+                    );
                     $cids = $this->getProductIds($sku['sku']);
                     $sku['product_id'] = $cids['pid'];
 

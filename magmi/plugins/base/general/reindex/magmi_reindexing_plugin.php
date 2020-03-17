@@ -2,14 +2,12 @@
 
 class IdxEng extends Magmi_Engine
 {
-     public function engineInit($params)
+    public function engineInit($params)
     {
-
     }
 
-     public function engineRun($params)
+    public function engineRun($params)
     {
-
     }
 }
 
@@ -28,8 +26,7 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 
     public function initIndexList()
     {
-        if($this->_eng==null)
-        {
+        if ($this->_eng==null) {
             $this->_eng=new IdxEng();
             $this->_eng->initialize();
             $this->_eng->connectToMagento();
@@ -38,16 +35,12 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
         $sql="SELECT indexer_id FROM ".$this->_eng->tablename('indexer_state');
         $result=$this->_eng->selectAll($sql);
         $idxlist=array();
-        if(count($result))
-        {
-            foreach($result as $row)
-            {
+        if (count($result)) {
+            foreach ($result as $row) {
                 $idxlist[]=$row["indexer_id"];
             }
             return implode(',', $idxlist);
-        }
-        else
-        {
+        } else {
             return array();
         }
     }
@@ -100,8 +93,7 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 
     public function getIndexList()
     {
-        if($this->_indexlist==null)
-        {
+        if ($this->_indexlist==null) {
             $this->_indexlist=$this->initIndexList();
         }
         return $this->_indexlist;

@@ -5,22 +5,22 @@
 				<option value="local"
 					<?php if ($self->getParam("$prefix:importmode", "local")=="local") {
     ?>
-					selected="selected" <?php 
+					selected="selected" <?php
 }?>>Local</option>
 				<option value="remote"
 					<?php if ($self->getParam("$prefix:importmode", "local")=="remote") {
-    ?>
-					selected="selected" <?php 
-}?>>Remote</option>
+        ?>
+					selected="selected" <?php
+    }?>>Remote</option>
 		</select>
 
 	</ul>
 
 	<div id="<?php echo $prefix ?>:localcsv"
 		<?php if ($self->getParam("$prefix:importmode", "local")=="remote") {
-    ?>
-		style="display: none" <?php 
-}?>>
+        ?>
+		style="display: none" <?php
+    }?>>
 		<ul class="formline">
 			<li class="label">CSVs base directory</li>
 			<li class="value"><input type="text" name="<?php echo $prefix ?>:basedir"
@@ -39,9 +39,9 @@
 
 	<div id="<?php echo $prefix ?>:remotecsv"
 		<?php if ($self->getParam("$prefix:importmode", "local")=="local") {
-    ?>
-		style="display: none" <?php 
-}?>>
+        ?>
+		style="display: none" <?php
+    }?>>
 		<ul class="formline">
 			<li class="label">Remote CSV url</li>
 			<li class="value"><input type="text" name="<?php echo $prefix ?>:remoteurl"
@@ -50,9 +50,9 @@
 				style="width: 400px"></input> <input type="checkbox"
 				id="<?php echo $prefix ?>:forcedl" name="<?php echo $prefix ?>:forcedl"
 				<?php if ($self->getParam("$prefix:forcedl", false)==true) {
-    ?>
-				checked="checked" <?php 
-}?>>Force Download</li>
+        ?>
+				checked="checked" <?php
+    }?>>Force Download</li>
 		</ul>
 
 		<div id="<?php echo $prefix ?>:remotecookie">
@@ -66,14 +66,14 @@
 		</div>
 		<input type="checkbox" id="<?php echo $prefix ?>:remoteauth" name="<?php echo $prefix ?>:remoteauth"
 			<?php  if ($self->getParam("$prefix:remoteauth", false)==true) {
-     ?>
-			checked="checked" <?php 
- }?>>authentication needed
+        ?>
+			checked="checked" <?php
+    }?>>authentication needed
 		<div id="<?php echo $prefix ?>:remoteauth"
 			<?php  if ($self->getParam("$prefix:remoteauth", false)==false) {
-     ?>
-			style="display: none" <?php 
- }?>>
+        ?>
+			style="display: none" <?php
+    }?>>
 			<div class="remoteuserpass">
 				<ul class="formline">
 					<li class="label">User</li>
@@ -109,9 +109,9 @@
 <div class="">
 	<input type="checkbox" name="<?php echo $prefix ?>:allowtrunc"
 		<?php if ($self->getParam("$prefix:allowtrunc", false)==true) {
-    ?>
-		checked="checked" <?php 
-}?>> Allow truncated lines (bypasses data line
+        ?>
+		checked="checked" <?php
+    }?>> Allow truncated lines (bypasses data line
 	structure correlation with headers)
 </div>
 
@@ -121,13 +121,13 @@ $hdline = $self->getParam("<?php echo $prefix ?>:headerline", "");
 $malformed = ($hdline != "" && $hdline != 1)?>
 <input type="checkbox" id="<?php echo $prefix ?>:malformed_cb" <?php if ($malformed) {
     ?>
-	checked="checked" <?php 
+	checked="checked" <?php
 }?> />
 Malformed CSV (column list line not at top of file)
 <div id="<?php echo $prefix ?>:malformed" <?php if (!$malformed) {
-    ?> style="display: none"
-	<?php 
-}?>>
+        ?> style="display: none"
+	<?php
+    }?>>
 	<span class="">CSV Header at line:</span><input type="text"
 		id="<?php echo $prefix ?>:headerline" name="<?php echo $prefix ?>:headerline" maxlength="7" size="7"
 		value="<?php echo $hdline?>"></input>

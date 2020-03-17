@@ -30,7 +30,8 @@ require_once("../inc/magmi_config.php");
 $epc = new EnabledPlugins_Config($profile);
 $epc->setPropsFromFlatArray(
     array("PLUGINS_DATASOURCES:class"=>$dslist, "PLUGINS_GENERAL:classes"=>$genlist,
-        "PLUGINS_ITEMPROCESSORS:classes"=>$iplist));
+        "PLUGINS_ITEMPROCESSORS:classes"=>$iplist)
+);
 if ($epc->save()) {
 
     // saving plugins params

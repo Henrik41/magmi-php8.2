@@ -44,15 +44,18 @@ class SkuFinderItemProcessor extends Magmi_ItemProcessor
                 return false;
             }
             if ($attinfo["backend_type"] == "static") {
-                $this->log("$matchfield is " . $attinfo["backend_type"] . ", it cannot be used as sku matching field.",
-                    "error");
+                $this->log(
+                    "$matchfield is " . $attinfo["backend_type"] . ", it cannot be used as sku matching field.",
+                    "error"
+                );
                 $item["__MAGMI_LAST__"] = 1;
                 return false;
             }
             if ($attinfo["frontend_input"] == "select" || $attinfo["frontend_input"] == "multiselect") {
                 $this->log(
                     "$matchfield is " . $attinfo["frontend_input"] . ", it cannot be used as sku matching field.",
-                    "error");
+                    "error"
+                );
                 $item["__MAGMI_LAST__"] = 1;
                 return false;
             }

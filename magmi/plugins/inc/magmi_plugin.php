@@ -60,10 +60,10 @@ class Magmi_PluginOptionsPanel
     public function __construct($pinst, $file = null)
     {
         $this->_plugin = $pinst;
-       //fix xsrf, limit inclusion to "basename"
-       if ($file !==null && (basename($file)!==$file)) {
-           $file=null;
-       }
+        //fix xsrf, limit inclusion to "basename"
+        if ($file !==null && (basename($file)!==$file)) {
+            $file=null;
+        }
         $this->_file = ($file == null ? "options_panel.php" : $file);
         $this->initDefaultHtml();
     }

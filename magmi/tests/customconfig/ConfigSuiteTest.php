@@ -4,7 +4,7 @@ require_once("magmi_config.php");
 
 require_once(__DIR__."/../../integration/inc/magmi_datapump.php");
 
-class ConfigTest extends  PHPUnit_Framework_TestCase
+class ConfigTest extends PHPUnit_Framework_TestCase
 {
     public function testConfigFromCustomFile()
     {

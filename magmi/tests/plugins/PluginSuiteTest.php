@@ -12,7 +12,7 @@ require_once(__DIR__."/../../integration/inc/magmi_datapump.php");
  * Will use datapump for testing specific cases
  */
 
-class PluginSuiteTest extends  PHPUnit_Framework_TestCase
+class PluginSuiteTest extends PHPUnit_Framework_TestCase
 {
     public static function setupBeforeClass()
     {
