@@ -165,7 +165,7 @@ class tierpriceprocessor extends Magmi_ItemProcessor
 
     public function initialize($params)
     {
-        $sql = "SELECT COUNT(store_id) as cnt FROM " . $this->tablename("core_store") . " WHERE store_id!=0";
+        $sql = "SELECT COUNT(store_id) as cnt FROM " . $this->tablename("store") . " WHERE store_id!=0";
         $ns = $this->selectOne($sql, array(), "cnt");
         if ($ns == 1) {
             $this->_singlestore = 1;
