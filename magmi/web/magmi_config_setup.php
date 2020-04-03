@@ -179,6 +179,7 @@ $cansock = !($dmysqlsock === false);
 					<?php
     }?>
 					<option value="localxml" <?php echo $curconn == "localxml" ? 'selected="selected"' : '' ?>>Using magento.xml</option>
+					<option value="envphp" <?php echo $curconn == "envphp" ? 'selected="selected"' : '' ?>>Using env.php</option>
 				</select></li>
 			</ul>
 
