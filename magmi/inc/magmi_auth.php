@@ -34,7 +34,7 @@ class Magmi_Auth extends Magmi_Engine
     public function authenticate()
     {
         if (!$this->_hasDB) {
-            return ($this->user == 'magmi' && $this->pass == 'magmi');
+            die("Please create magmi.ini file in magmi/conf directory , by copying & editing magmi.ini.default file and filling appropriate values");
         }
         $tn=$this->tablename('admin_user');
         $result = $this->select("SELECT * FROM $tn WHERE username = ?", array($this->user))->fetch(PDO::FETCH_ASSOC);
@@ -53,7 +53,7 @@ class Magmi_Auth extends Magmi_Engine
 
         return $valid;
     }
-    
+
     /**
      * Generate Argon2ID13 hash.
      * Got from \Magento\Framework\Encryption\Encryptor
