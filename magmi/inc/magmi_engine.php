@@ -381,6 +381,11 @@ abstract class Magmi_Engine extends DbHelper
         return date('Y-m-d h:i:', $timeStamp) . (date('s', $timeStamp) + $microSec);
     }
 
+    /**
+     * @param string $data
+     * @param string $type
+     * @param null|Magmi_Logger $logger
+     */
     public function log($data, $type = "default", $logger = null)
     {
         $usedlogger = ($logger == null ? $this->logger : $logger);
