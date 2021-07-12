@@ -6,7 +6,7 @@ if ($files !== false && count($files) > 0) {
 	<?php foreach ($files as $fname) {
         ?>
 		<option
-		<?php if ($fname==$this->getAbsPath($this->getParam("CSV:filename"))) {
+		<?php if ($fname == $this->getAbsPath($this->getParam("CSV:filename"))) {
             ?>
 		selected=selected <?php
         } ?> value="<?php echo $fname?>"><?php echo basename($fname)?></option>

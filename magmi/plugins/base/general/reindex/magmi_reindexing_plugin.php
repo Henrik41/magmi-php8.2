@@ -20,24 +20,24 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 
     public function getPluginInfo()
     {
-        return array("name"=>"Magmi Magento Reindexer","author"=>"Dweeves","version"=>"1.0.4",
-            "url"=>$this->pluginDocUrl("Magmi_Magento_Reindexer"));
+        return array("name" => "Magmi Magento Reindexer","author" => "Dweeves","version" => "1.0.4",
+            "url" => $this->pluginDocUrl("Magmi_Magento_Reindexer"));
     }
 
     public function initIndexList()
     {
-        if ($this->_eng==null) {
-            $this->_eng=new IdxEng();
+        if ($this->_eng == null) {
+            $this->_eng = new IdxEng();
             $this->_eng->initialize();
             $this->_eng->connectToMagento();
         }
 
-        $sql="SELECT indexer_id FROM ".$this->_eng->tablename('indexer_state');
-        $result=$this->_eng->selectAll($sql);
-        $idxlist=array();
+        $sql = "SELECT indexer_id FROM ".$this->_eng->tablename('indexer_state');
+        $result = $this->_eng->selectAll($sql);
+        $idxlist = array();
         if (count($result)) {
             foreach ($result as $row) {
-                $idxlist[]=$row["indexer_id"];
+                $idxlist[] = $row["indexer_id"];
             }
             return implode(',', $idxlist);
         } else {
@@ -93,8 +93,8 @@ class Magmi_ReindexingPlugin extends Magmi_GeneralImportPlugin
 
     public function getIndexList()
     {
-        if ($this->_indexlist==null) {
-            $this->_indexlist=$this->initIndexList();
+        if ($this->_indexlist == null) {
+            $this->_indexlist = $this->initIndexList();
         }
         return $this->_indexlist;
     }

@@ -1,4 +1,5 @@
 <?php
+
 require_once("magmi_productimportengine.php");
 
 class Magmi_ProductImport_DataPump
@@ -35,7 +36,7 @@ class Magmi_ProductImport_DataPump
     {
         $this->_engine->setLogger($logger);
         $this->_engine->initialize();
-        $this->_params = array("profile"=>$profile,"mode"=>$mode);
+        $this->_params = array("profile" => $profile,"mode" => $mode);
         $this->_engine->engineInit($this->_params);
         $this->_engine->initImport($this->_params);
         // intermediary report step

@@ -1477,7 +1477,7 @@ class Magmi_ProductImportEngine extends Magmi_Engine
 
                 // get the item value
                 $ivalue = $item[$attrcode];
-                
+
                 // Ignore user defined attributes not in current attribute set!
                 if ($attrdesc["is_user_defined"] && !isset($this->attribute_set_infos[$asid][$attid])) {
                     if (!empty($ivalue)) {

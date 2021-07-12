@@ -3,12 +3,12 @@
 		<li class="label">CSV import mode</li>
 		<li class="value"><select name="<?php echo $prefix ?>:importmode" id="<?php echo $prefix ?>:importmode">
 				<option value="local"
-					<?php if ($self->getParam("$prefix:importmode", "local")=="local") {
+					<?php if ($self->getParam("$prefix:importmode", "local") == "local") {
     ?>
 					selected="selected" <?php
 }?>>Local</option>
 				<option value="remote"
-					<?php if ($self->getParam("$prefix:importmode", "local")=="remote") {
+					<?php if ($self->getParam("$prefix:importmode", "local") == "remote") {
         ?>
 					selected="selected" <?php
     }?>>Remote</option>
@@ -17,7 +17,7 @@
 	</ul>
 
 	<div id="<?php echo $prefix ?>:localcsv"
-		<?php if ($self->getParam("$prefix:importmode", "local")=="remote") {
+		<?php if ($self->getParam("$prefix:importmode", "local") == "remote") {
         ?>
 		style="display: none" <?php
     }?>>
@@ -38,7 +38,7 @@
 	</div>
 
 	<div id="<?php echo $prefix ?>:remotecsv"
-		<?php if ($self->getParam("$prefix:importmode", "local")=="local") {
+		<?php if ($self->getParam("$prefix:importmode", "local") == "local") {
         ?>
 		style="display: none" <?php
     }?>>
@@ -49,7 +49,7 @@
 				value="<?php echo $self->getParam("$prefix:remoteurl", "")?>"
 				style="width: 400px"></input> <input type="checkbox"
 				id="<?php echo $prefix ?>:forcedl" name="<?php echo $prefix ?>:forcedl"
-				<?php if ($self->getParam("$prefix:forcedl", false)==true) {
+				<?php if ($self->getParam("$prefix:forcedl", false) == true) {
         ?>
 				checked="checked" <?php
     }?>>Force Download</li>
@@ -65,12 +65,12 @@
 			</ul>
 		</div>
 		<input type="checkbox" id="<?php echo $prefix ?>:remoteauth" name="<?php echo $prefix ?>:remoteauth"
-			<?php  if ($self->getParam("$prefix:remoteauth", false)==true) {
+			<?php  if ($self->getParam("$prefix:remoteauth", false) == true) {
         ?>
 			checked="checked" <?php
     }?>>authentication needed
 		<div id="<?php echo $prefix ?>:remoteauth"
-			<?php  if ($self->getParam("$prefix:remoteauth", false)==false) {
+			<?php  if ($self->getParam("$prefix:remoteauth", false) == false) {
         ?>
 			style="display: none" <?php
     }?>>
@@ -108,7 +108,7 @@
 
 <div class="">
 	<input type="checkbox" name="<?php echo $prefix ?>:allowtrunc"
-		<?php if ($self->getParam("$prefix:allowtrunc", false)==true) {
+		<?php if ($self->getParam("$prefix:allowtrunc", false) == true) {
         ?>
 		checked="checked" <?php
     }?>> Allow truncated lines (bypasses data line

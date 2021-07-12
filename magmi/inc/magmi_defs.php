@@ -1,4 +1,5 @@
 <?php
+
 define("MAGMI_BASEDIR", dirname(dirname(__FILE__)));
 define("MAGMI_INCDIR", MAGMI_BASEDIR . '/inc');
 define("MAGMI_INTEGRATION_INCDIR", MAGMI_BASEDIR . '/integration/inc');

@@ -1,4 +1,5 @@
 <?php
+
 require_once("../../inc/magmi_defs.php");
 require_once("../inc/magmi_datapump.php");
 
@@ -40,14 +41,14 @@ $dp = Magmi_DataPumpFactory::getDataPumpInstance("productimport");
  */
 $dp->beginImportSession("default", "create", new TestLogger());
 
-$item=[
-    'name'=>'name22',
-    'sku'=>'nnn',
-    'qty'=>'55',
-    'is_in_stock'=>'3',
-    'type'=>'simple',
-    'categories'=>'Все/Cat1',
-    'small_image'=>'+http://hotline.ua/img/tx/746/7463963.jpg'
+$item = [
+    'name' => 'name22',
+    'sku' => 'nnn',
+    'qty' => '55',
+    'is_in_stock' => '3',
+    'type' => 'simple',
+    'categories' => 'Все/Cat1',
+    'small_image' => '+http://hotline.ua/img/tx/746/7463963.jpg'
 ];
 $dp->ingest($item);
 $dp->endImportSession();
@@ -72,8 +73,8 @@ for ($sku = 0; $sku < 2; $sku++) {
     // description : testXXXXX
     // price : random between $1 & $500
     // categories : the ones built above
-    $item = array("sku"=>str_pad($sku, 5, "0", STR_PAD_LEFT),"name"=>"item" . $sku,"description"=>"test" . $sku,
-        "price"=>rand(1, 500),"categories"=>implode("/", $cats));
+    $item = array("sku" => str_pad($sku, 5, "0", STR_PAD_LEFT),"name" => "item" . $sku,"description" => "test" . $sku,
+        "price" => rand(1, 500),"categories" => implode("/", $cats));
     // now some fun, every 100 items, create some relations
     if ($sku > 99 && $sku % 100 == 0) {
         // first, we'll remove all existing relations (upsell/cross sell / related)

@@ -1,4 +1,5 @@
 <?php
+
 if (!defined("DIRSEP")) {
     define("DIRSEP", DIRECTORY_SEPARATOR);
 }
@@ -57,7 +58,7 @@ class Properties
             $this->_props = parse_ini_file($this->inifile, true);
             foreach ($this->_props as $sec => $data) {
                 foreach ($data as $k => $v) {
-                    $newv=$v;
+                    $newv = $v;
                     foreach ($this->_specialchars as $spch => $alias) {
                         $newv = str_replace($alias, $spch, $newv);
                     }

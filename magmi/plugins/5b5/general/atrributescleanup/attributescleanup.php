@@ -38,20 +38,20 @@ class AttributeCleanup extends Magmi_GeneralImportPlugin
 
     public function getPluginInfo()
     {
-        return array("name"=>"Attribute Cleanup","author"=>"5byfive GmbH","version"=>"0.0.1","url"=>$this->pluginDocUrl("Attribute_cleanup"));
+        return array("name" => "Attribute Cleanup","author" => "5byfive GmbH","version" => "0.0.1","url" => $this->pluginDocUrl("Attribute_cleanup"));
     }
 
     public function beforeImport()
     {
         // intentionally left blank...
     }
-    
+
 
     public function afterImport()
     {
         $this->deleteUnreferencedAttributes();
     }
-    
+
 
     public function deleteUnreferencedAttributes()
     {
@@ -114,7 +114,7 @@ class AttributeCleanup extends Magmi_GeneralImportPlugin
                     return str_replace('##', '', $this->tablename($m));
                 }
             }, $deleteSql);
-    
+
             $count = $this->delete($sql, array($this->getProductEntityType()));
             if ($count > 0) {
                 $this->log("Deleted $count records from table $table.", 'startup');
@@ -122,14 +122,14 @@ class AttributeCleanup extends Magmi_GeneralImportPlugin
         }
         $this->log('Done deleting unreferenced attribute values.', 'startup');
     }
-    
-    
+
+
     /**
      * Calls the engine's trace function with the plugin's name and version as a prefix.
      * @param Exception $e the exception to trace
      * @param string $message message
      */
-    public function trace($e, $message="no message")
+    public function trace($e, $message = "no message")
     {
         $pinf = $this->getPluginInfo();
         $data = "{$pinf["name"]} v{$pinf["version"]} - ".$message;

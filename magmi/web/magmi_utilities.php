@@ -70,7 +70,7 @@ foreach ($plist as $pinst) {
     ?>
 		<div>
 			<div class="plugindescription">
-			<?php if ($info!==null) {
+			<?php if ($info !== null) {
         ?>
 				<?php echo $info?>
 			<?php

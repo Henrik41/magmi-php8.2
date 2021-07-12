@@ -35,18 +35,18 @@
 <ul class="formline">
 	<li class="label">Attachments</li>
 	<li class="value"><input type="checkbox" name="EMAILREP:attachlog"
-		<?php if ($this->getParam("EMAILREP:attachlog")==true) {
+		<?php if ($this->getParam("EMAILREP:attachlog") == true) {
     ?>
 		checked="checked" <?php
 }?>>Attach import log</li>
 	<li class="value"><input type="checkbox" name="EMAILREP:attachcsv"
-		<?php if ($this->getParam("EMAILREP:attachcsv")==true) {
+		<?php if ($this->getParam("EMAILREP:attachcsv") == true) {
         ?>
 		checked="checked" <?php
     }?>>Attach source CSV</li>
 <?php if (extension_loaded('zip')) { ?>
         <li class="value"><input type="checkbox" name="EMAILREP:zip"
-                <?php if ($this->getParam("EMAILREP:zip")==true) {
+                <?php if ($this->getParam("EMAILREP:zip") == true) {
         ?>
                 checked="checked" <?php
     }?>>Zip attachments</li>

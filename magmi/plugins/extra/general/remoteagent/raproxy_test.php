@@ -1,4 +1,5 @@
 <?php
+
 require_once('magmi_remoteagent_proxy.php');
 
 $rap = new Magmi_RemoteAgent_Proxy(

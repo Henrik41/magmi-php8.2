@@ -3,19 +3,19 @@
 class CategoryImporter extends Magmi_ItemProcessor
 {
     // Store map code => id
-    protected $stores      = array();
+    protected $stores = array();
     // Category cache build cache
-    protected $_idcache    = array();
+    protected $_idcache = array();
     // not used in base implementation
-    protected $_catattr    = array();
+    protected $_catattr = array();
     // (varchar|int) => assoc array (populated by initialize->getCatAttributeInfos)
     protected $_cattrinfos = array();
     // store_id => category root details (populated by initialize->initCats)
-    protected $_catroots   = array();
+    protected $_catroots = array();
     // website_id => array of store_id (populated by initialize->initCats)
-    protected $_catrootw   = array();
+    protected $_catrootw = array();
     // entity type of category (set in initialize->initCats)
-    protected $_cat_eid    = null;
+    protected $_cat_eid = null;
     // category separator (default: '/')
     protected $_tsep;
     // tricky escaped separator that matches slugging separator
@@ -29,8 +29,8 @@ class CategoryImporter extends Magmi_ItemProcessor
         $this->initStores();
         $this->initCats();
         $this->_cattrinfos = array(
-            'varchar' => array('name'      => array(), 'url_key'   => array(), 'url_path'        => array()),
-            'int'     => array('is_active' => array(), 'is_anchor' => array(), 'include_in_menu' => array())
+            'varchar' => array('name' => array(), 'url_key' => array(), 'url_path' => array()),
+            'int' => array('is_active' => array(), 'is_anchor' => array(), 'include_in_menu' => array())
         );
         foreach ($this->_cattrinfos as $catype => $attrlist) {
             foreach (array_keys($attrlist) as $catatt) {
@@ -71,8 +71,8 @@ class CategoryImporter extends Magmi_ItemProcessor
 		 "
         );
         foreach ($result as $row) {
-            $rootinfo = array("path"=>$row["path"],"name"=>$row["name"],
-                "rootarr"=>explode("/", $row["path"]));
+            $rootinfo = array("path" => $row["path"],"name" => $row["name"],
+                "rootarr" => explode("/", $row["path"]));
             $this->_catroots[$row["store_id"]] = $rootinfo;
             $this->_catrootw[$row["website_id"]][] = $row["store_id"];
             if ($this->_cat_eid == null) {
@@ -114,8 +114,8 @@ class CategoryImporter extends Magmi_ItemProcessor
     /* Interface method */
     public function getPluginInfo()
     {
-        return array("name"=>"On the fly category creator/importer","author"=>"Dweeves","version"=>"0.2.5",
-            "url"=>$this->pluginDocUrl("On_the_fly_category_creator/importer"));
+        return array("name" => "On the fly category creator/importer","author" => "Dweeves","version" => "0.2.5",
+            "url" => $this->pluginDocUrl("On_the_fly_category_creator/importer"));
     }
 
     /**
@@ -218,16 +218,16 @@ class CategoryImporter extends Magmi_ItemProcessor
      */
     public function extractCatAttrs(&$catdef)
     {
-        $cdefs   = explode($this->_tsep, $catdef);
-        $odefs   = array();
+        $cdefs = explode($this->_tsep, $catdef);
+        $odefs = array();
         $s_odefs = array();
-        $clist   = array();
+        $clist = array();
 
         foreach ($cdefs as $cdef) {
-            $parts   = explode("::", $cdef);
-            $cname   = trim($parts[0]);
+            $parts = explode("::", $cdef);
+            $cname = trim($parts[0]);
             $s_cname = $cname;
-            $last    = array_pop($parts);
+            $last = array_pop($parts);
             // Check for storename::[defaultname] syntax
             if ($cname !== $last && stripos($last, '[') === 0) {
                 $cname = trim($last, '[]');
@@ -242,16 +242,16 @@ class CategoryImporter extends Magmi_ItemProcessor
             $s_odefs[] = $s_cname;
 
             $attrs = array(
-                "name"            => $cname,
-                "is_active"       => $cp > 1 ? $parts[1] : 1,
-                "is_anchor"       => $cp > 2 ? $parts[2] : 1,
+                "name" => $cname,
+                "is_active" => $cp > 1 ? $parts[1] : 1,
+                "is_anchor" => $cp > 2 ? $parts[2] : 1,
                 "include_in_menu" => $cp > 3 ? $parts[3] : 1,
-                "url_key"         => Slugger::slug($cname),
-                "url_path"        => Slugger::slug(implode("/", $odefs), true) . $this->getParam("CAT:urlending", ".html"),
+                "url_key" => Slugger::slug($cname),
+                "url_path" => Slugger::slug(implode("/", $odefs), true) . $this->getParam("CAT:urlending", ".html"),
             );
             if ($cname !== $s_cname) {
-                $attrs['translated_name']     = $s_cname;
-                $attrs['translated_url_key']  = Slugger::slug($s_cname);
+                $attrs['translated_name'] = $s_cname;
+                $attrs['translated_url_key'] = Slugger::slug($s_cname);
                 $attrs['translated_url_path'] = Slugger::slug(implode('/', $s_odefs), true) . $this->getParam('CAT:urlending', '.html');
             }
             $clist[] = $attrs;
@@ -400,9 +400,9 @@ class CategoryImporter extends Magmi_ItemProcessor
             return ;
         }
 
-        $attributes['name']     =  $attributes['translated_name'];
-        $attributes['url_key']  =  $attributes['translated_url_key'];
-        $attributes['url_path'] =  $attributes['translated_url_path'];
+        $attributes['name'] = $attributes['translated_name'];
+        $attributes['url_key'] = $attributes['translated_url_key'];
+        $attributes['url_path'] = $attributes['translated_url_path'];
         foreach ($store_ids as $store_id) {
             $this->updateOrCreateAttributes($id, $attributes, $store_id);
         }
@@ -412,8 +412,8 @@ class CategoryImporter extends Magmi_ItemProcessor
     {
         foreach ($this->_cattrinfos as $tp => $attinfo) {
             $placeholders = array();
-            $values       = array();
-            $table        = $this->tablename("catalog_category_entity_$tp");
+            $values = array();
+            $table = $this->tablename("catalog_category_entity_$tp");
 
             foreach ($attinfo as $attrcode => $attdata) {
                 if (isset($attdata['attribute_id'])) {
@@ -484,7 +484,7 @@ class CategoryImporter extends Magmi_ItemProcessor
                         // set a specific store key
                         $k = "%RP:$sid%";
                         // store root path definitions
-                        $rootpaths[$k] = array("path"=>$srp["path"],"rootarr"=>$srp["rootarr"]);
+                        $rootpaths[$k] = array("path" => $srp["path"],"rootarr" => $srp["rootarr"]);
                         //$trimroot = trim($rname);
                         // replace root name with store root key
                         $item["categories"] = str_replace($matches[0][$i], $k, $item["categories"]);
@@ -503,7 +503,7 @@ class CategoryImporter extends Magmi_ItemProcessor
         }
         $sids = array_keys($this->_catroots);
         $srp = $this->_catroots[$sids[0]];
-        $rootpaths["%RP:base%"] = array("path"=>$srp["path"],"rootarr"=>$srp["rootarr"]);
+        $rootpaths["%RP:base%"] = array("path" => $srp["path"],"rootarr" => $srp["rootarr"]);
 
         return $rootpaths;
     }
@@ -559,15 +559,15 @@ class CategoryImporter extends Magmi_ItemProcessor
 
             // assign to category roots
             if ($this->getParam("CAT:lastonly", 0) == 0) {
-                foreach ($rootpaths as $base=>$ra) {
+                foreach ($rootpaths as $base => $ra) {
                     //find root lenght
-                    $bl=strlen($base);
+                    $bl = strlen($base);
                     //for each part of category list to include upwards , match up to local root
                     foreach ($catlist as $catdef) {
-                        if (substr($catdef, 0, $bl)==$base) {
-                            $rootpath=$ra['rootarr'];
+                        if (substr($catdef, 0, $bl) == $base) {
+                            $rootpath = $ra['rootarr'];
                             array_shift($rootpath);
-                            $catids= array_merge($catids, $rootpath);
+                            $catids = array_merge($catids, $rootpath);
                         }
                     }
                 }

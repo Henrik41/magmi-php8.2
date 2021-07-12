@@ -4,8 +4,8 @@ class RelatedProducts extends Magmi_ItemProcessor
 {
     public function getPluginInfo()
     {
-        return array("name"=>"Product relater","author"=>"Dweeves,jwtechniek","version"=>"1.0.3",
-            "url"=>$this->pluginDocUrl("Product_relater"));
+        return array("name" => "Product relater","author" => "Dweeves,jwtechniek","version" => "1.0.3",
+            "url" => $this->pluginDocUrl("Product_relater"));
     }
 
     public function checkRelated(&$rinfo)
@@ -114,8 +114,8 @@ class RelatedProducts extends Magmi_ItemProcessor
     public function getRelInfos($relationdef)
     {
         $relinfos = explode(",", $relationdef);
-        $relskusadd = array("direct"=>array(),"re"=>array());
-        $relskusdel = array("direct"=>array(),"re"=>array());
+        $relskusadd = array("direct" => array(),"re" => array());
+        $relskusdel = array("direct" => array(),"re" => array());
         foreach ($relinfos as $relinfo) {
             $rinf = explode("::", $relinfo);
             if (count($rinf) == 1) {
@@ -144,7 +144,7 @@ class RelatedProducts extends Magmi_ItemProcessor
             }
         }
 
-        return array("add"=>$relskusadd,"del"=>$relskusdel);
+        return array("add" => $relskusadd,"del" => $relskusdel);
     }
 
     public function buildJoinCond($item, $rinfo, $keys)
@@ -170,7 +170,7 @@ class RelatedProducts extends Magmi_ItemProcessor
                 $joins[$key] = "({$joins[$key]})";
             }
         }
-        return array("join"=>$joins,"data"=>$data);
+        return array("join" => $joins,"data" => $data);
     }
 
     public function setRelatedItems($item, $rinfo)

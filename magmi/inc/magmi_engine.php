@@ -1,4 +1,5 @@
 <?php
+
 require_once("dbhelper.class.php");
 require_once("magmi_config.php");
 require_once("magmi_version.php");
@@ -283,7 +284,7 @@ abstract class Magmi_Engine extends DbHelper
 
 
 
-        
+
         if (is_array($this->_activeplugins) && isset($this->_activeplugins[$family]) && isset($this->_activeplugins[$family][$order])) {
             return $this->_activeplugins[$family][$order];
         }
@@ -521,13 +522,13 @@ abstract class Magmi_Engine extends DbHelper
                 $user = $default_setup->username;
                 $pass = $default_setup->password;
                 $port = $default_setup->port;
-            } else if ($conn === 'envphp') {
+            } elseif ($conn === 'envphp') {
                 $envPath = dirname(__FILE__) . "/../../app/etc/env.php";
                 if (!file_exists($envPath)) {
                     throw new Exception("Cannot load xml from path '$envPath'");
                 }
                 $env_array = include $envPath;
-                $host_array = explode(":",$env_array['db']['connection']['default']['host']);
+                $host_array = explode(":", $env_array['db']['connection']['default']['host']);
                 $host = $host_array[0];
                 $port = isset($host_array[1]) ? $host_array[1] : '3306';
                 $dbname = $env_array['db']['connection']['default']['dbname'];

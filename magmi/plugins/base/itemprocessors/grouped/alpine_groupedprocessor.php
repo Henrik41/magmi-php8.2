@@ -237,7 +237,7 @@ class Magmi_GroupedItemProcessor extends Magmi_ItemProcessor
             }
             //fix for empty grouped skus support => no link
             if (isset($item["grouped_skus"])) {
-                $matchmode = (trim($item["grouped_skus"]) != "")?"fixed":"none";
+                $matchmode = (trim($item["grouped_skus"]) != "") ? "fixed" : "none";
             }
         }
         return $matchmode;

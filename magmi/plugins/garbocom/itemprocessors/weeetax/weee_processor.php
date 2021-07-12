@@ -10,7 +10,7 @@ class WeeetaxItemProcessor extends Magmi_ItemProcessor
 {
     public function getPluginInfo()
     {
-        return array("name"=>"Weee Tax importer","author"=>"Garbocom & Dweeves","version"=>"0.0.5");
+        return array("name" => "Weee Tax importer","author" => "Garbocom & Dweeves","version" => "0.0.5");
     }
 
     /**

@@ -42,7 +42,7 @@ foreach ($data as $line) {
 		onclick="showtrace('<?php echo $errnum?>')"><?php echo $errnum?></a>
  	<?php
     } ?><span><?php echo $xdata?></span>
- <?php if ($errnum!=null) {
+ <?php if ($errnum != null) {
         ?>
  	<div style="display: none" class="trace"
 			id="trace_<?php echo $errnum?>"></div>

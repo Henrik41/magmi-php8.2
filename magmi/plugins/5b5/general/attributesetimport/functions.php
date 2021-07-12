@@ -24,7 +24,7 @@ function javascript($self, $prefix, $withCsvOptions, $plugin)
     require('javascript.php');
 }
 
-function startDiv($self, $prefix, $name, $show=true)
+function startDiv($self, $prefix, $name, $show = true)
 {
     $fullName = "$prefix:$name"; ?><div id="<?php echo $fullName ?>"<?php if (!$show) {
         ?>style="display:none;"<?php
@@ -84,7 +84,7 @@ function options($self, $title, $prefix, $entityName, $withCsvOptions, $withMagm
     }
     if ($withEnable) {
         checkbox($self, $prefix, 'enable', true, "Enable ${entityName} import");
-        startDiv($self, $prefix, 'enabled', $self->getParam($prefix.":enable", "off")=="on");
+        startDiv($self, $prefix, 'enabled', $self->getParam($prefix.":enable", "off") == "on");
     }
     if ($withCsvOptions) {
         csvOptions($self, $prefix);

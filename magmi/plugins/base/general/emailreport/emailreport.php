@@ -11,8 +11,8 @@ class EmailReportPlugin extends Magmi_GeneralImportPlugin
 
     public function getPluginInfo()
     {
-        return array("name"=>"Import Report Mail Notifier","author"=>"Dweeves","version"=>"1.0.0",
-            "url"=>$this->pluginDocUrl("Import_report_mail_notifier"));
+        return array("name" => "Import Report Mail Notifier","author" => "Dweeves","version" => "1.0.0",
+            "url" => $this->pluginDocUrl("Import_report_mail_notifier"));
     }
 
     public function send_email($to, $from, $from_name, $subject, $message, $attachments = false)

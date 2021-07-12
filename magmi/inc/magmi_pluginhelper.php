@@ -1,4 +1,5 @@
 <?php
+
 require_once("magmi_config.php");
 require_once("fshelper.php");
 
@@ -9,9 +10,9 @@ class Magmi_PluginHelper
     public $base_dir;
     public $plugin_dir;
     protected $_profile;
-    protected $_plmeta = array("datasources"=>array("Magmi_Datasource","*/*"),
-        "itemprocessors"=>array("Magmi_ItemProcessor","*/*"),"general"=>array("Magmi_GeneralImportPlugin","*/*"),
-        "utilities"=>array("Magmi_UtilityPlugin","utilities"));
+    protected $_plmeta = array("datasources" => array("Magmi_Datasource","*/*"),
+        "itemprocessors" => array("Magmi_ItemProcessor","*/*"),"general" => array("Magmi_GeneralImportPlugin","*/*"),
+        "utilities" => array("Magmi_UtilityPlugin","utilities"));
 
     public function __construct($profile = null)
     {
@@ -55,7 +56,7 @@ class Magmi_PluginHelper
                 if (preg_match_all("/class\s+(.*?)\s+extends\s+$baseclass/mi", $content, $matches, PREG_SET_ORDER)) {
                     require_once($pcfile);
                     foreach ($matches as $match) {
-                        $pluginclasses[] = array("class"=>$match[1],"dir"=>$dirname,"file"=>basename($pcfile));
+                        $pluginclasses[] = array("class" => $match[1],"dir" => $dirname,"file" => basename($pcfile));
                     }
                 }
             }
@@ -147,9 +148,9 @@ class Magmi_PluginHelper
         if ($res === true) {
             $zip->extractTo($this->plugin_dir);
             $zip->close();
-            return array("plugin_install"=>"OK");
+            return array("plugin_install" => "OK");
         } else {
-            return array("plugin_install"=>"ERROR","ERROR"=>"Invalid Plugin Package Archive");
+            return array("plugin_install" => "ERROR","ERROR" => "Invalid Plugin Package Archive");
         }
         $packages = glob("$this->plugin_dir/*");
         foreach ($packages as $pdir) {

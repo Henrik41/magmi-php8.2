@@ -47,13 +47,13 @@ Saved:<?php echo $eplconf->getLastSaved("%c")?>
 				<li class="label">Current Magmi Profile:</li>
 				<li class="value"><select name="profile"
 					onchange="$('chooseprofile').submit()">
-						<option <?php if (null==$profile) {
+						<option <?php if (null == $profile) {
     ?> selected="selected" <?php
 }?>
 							value="default">Default</option>
 			<?php foreach ($profilelist as $profname) {
         ?>
-			<option <?php if ($profname==$profile) {
+			<option <?php if ($profname == $profile) {
             ?> selected="selected"
 							<?php
         } ?> value="<?php echo $profname?>"><?php echo $profname?></option>
@@ -102,8 +102,8 @@ foreach ($order as $k) {
 
     if ($k == "datasources") {
         ?>
-			<?php $pinf=$plugins[$k]; ?>
-			<?php if (count($pinf)>0) {
+			<?php $pinf = $plugins[$k]; ?>
+			<?php if (count($pinf) > 0) {
             ?>
 			<div class="pluginselect" style="float: left">
 
@@ -121,7 +121,7 @@ foreach ($order as $k) {
                 if ($eplconf->isPluginEnabled($k, $pclass)) {
                     $sinst = $pinst;
                 } ?>
-				<option value="<?php echo $pclass?>" <?php  if ($sinst==$pinst) {
+				<option value="<?php echo $pclass?>" <?php  if ($sinst == $pinst) {
                     ?>
 						selected="selected" <?php
                 } ?>><?php echo $pinfo["name"]." v".$pinfo["version"]?></option>
@@ -163,7 +163,7 @@ foreach ($order as $k) {
                 } else {
                     ?>
 						<?php if (!$catopen) {
-                        $catopen=true?>
+                        $catopen = true?>
 						<div class="grid_12 group">
 				<h1><?php echo $pcat?></h1>
 						<?php
@@ -555,7 +555,7 @@ initDefaultPanels();
 
 $('saveprofile').observe('click',function()
 								{
-									saveProfile(<?php echo $conf_ok?1:0 ?>,function(){$('chooseprofile').submit();});
+									saveProfile(<?php echo $conf_ok ? 1 : 0 ?>,function(){$('chooseprofile').submit();});
 									});
 
 $('runmagmi').observe('submit',function(ev){

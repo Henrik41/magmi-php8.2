@@ -27,7 +27,7 @@ if (!$eplconf->hasSection("PLUGINS_DATASOURCES")) {
 }
 ?>
 <!-- MAGMI UPLOADER DISABLED FOR SECURITY REASONS -->
-<?php $zipok=class_exists("ZipArchive");?>
+<?php $zipok = class_exists("ZipArchive");?>
 <div class="container_12">
 	<div class="grid_12 subtitle">
 		<span>Update Magmi</span>
@@ -112,15 +112,15 @@ if (!$eplconf->hasSection("PLUGINS_DATASOURCES")) {
 			<h3>Directly run magmi with existing profile</h3>
 			<div class="formline">
 				<span class="label">Run Magmi With Profile:</span>
-				<?php $profilelist=$conf->getProfileList(); ?>
+				<?php $profilelist = $conf->getProfileList(); ?>
 				<select name="profile" id="runprofile">
-					<option <?php if (null==$profile) {
+					<option <?php if (null == $profile) {
         ?> selected="selected" <?php
     }?>
 						value="default">Default</option>
 					<?php foreach ($profilelist as $profilename) {
         ?>
-					<option <?php if ($profilename==$profile) {
+					<option <?php if ($profilename == $profile) {
             ?> selected="selected"
 						<?php
         } ?> value="<?php echo $profilename?>"><?php echo $profilename?></option>
@@ -162,17 +162,17 @@ $cansock = !($dmysqlsock === false);
 	<div class="container_12" id="common_config">
 		<div class="grid_4 col">
 			<h3>Database</h3>
-	<?php $curconn=$conf->get("DATABASE", "connectivity", "net");?>
+	<?php $curconn = $conf->get("DATABASE", "connectivity", "net");?>
 			<ul class="formline">
 				<li class="label">Connectivity</li>
 				<li class="value"><select name="DATABASE:connectivity" id="DATABASE:connectivity">
-					<option value="net" <?php if ($curconn=="net") {
+					<option value="net" <?php if ($curconn == "net") {
     ?>
 						selected="selected" <?php
 } ?>>Using host/port</option>
 					<?php if ($cansock) {
         ?>
-					<option value="socket" <?php if ($curconn=="socket") {
+					<option value="socket" <?php if ($curconn == "socket") {
             ?>
 						selected="selected" <?php
         } ?>>Using local socket</option>
@@ -259,7 +259,7 @@ $cansock = !($dmysqlsock === false);
 			<?php foreach (array("2.1.x", "2.1.x EE") as $ver) {
         ?>
 				<option value="<?php echo $ver?>"
-							<?php if ($conf->get("MAGENTO", "version")==$ver) {
+							<?php if ($conf->get("MAGENTO", "version") == $ver) {
             ?>
 							selected=selected <?php
         } ?>><?php echo $ver?></option>
@@ -302,7 +302,7 @@ $cansock = !($dmysqlsock === false);
 				<li class="label">Disable attribute set update:</li>
 				<li class="value">
 					<input type="checkbox" id="noattsetupdate_cb"
-						<?php if ($conf->get("GLOBAL", "noattsetupdate", "off")=="on") {
+						<?php if ($conf->get("GLOBAL", "noattsetupdate", "off") == "on") {
         ?>
 						checked="checked" <?php
     }?>>
@@ -330,7 +330,7 @@ $cansock = !($dmysqlsock === false);
 			</div>
 		</div>
 	</div>
-	<?php if ($conf->get("USE_ALTERNATE", "file", "")!="") {
+	<?php if ($conf->get("USE_ALTERNATE", "file", "") != "") {
         ?>
 	<input type="hidden" name="USE_ALTERNATE:file"
 		value="<?php echo $conf->get("USE_ALTERNATE", "file"); ?>">

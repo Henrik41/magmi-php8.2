@@ -10,8 +10,8 @@ class ItemIndexer extends Magmi_ItemProcessor
 
     public function getPluginInfo()
     {
-        return array("name"=>"On the fly indexer","author"=>"Dweeves","version"=>"0.2",
-                     "url"=>$this->pluginDocUrl("On_the_fly_indexer"));
+        return array("name" => "On the fly indexer","author" => "Dweeves","version" => "0.2",
+                     "url" => $this->pluginDocUrl("On_the_fly_indexer"));
     }
 
     public function getPluginParamNames()
@@ -23,13 +23,13 @@ class ItemIndexer extends Magmi_ItemProcessor
     {
         $this->_toindex = null;
         // initialize shortname array for tables
-        $this->tns = array("cpe"=>$this->tablename("catalog_product_entity"),
-                           "cce"=>$this->tablename("catalog_category_entity"),"ccp"=>$this->tablename("catalog_category_product"),
-                           "cpw"=>$this->tablename("catalog_product_website"),"cs"=>$this->tablename("store"),
-                           "csg"=>$this->tablename("store_group"),"cpev"=>$this->tablename("catalog_product_entity_varchar"),
-                           "cpei"=>$this->tablename("catalog_product_entity_int"),
-                           "ccev"=>$this->tablename("catalog_category_entity_varchar"),"ea"=>$this->tablename("eav_attribute"),
-                           "ccpi"=>$this->tablename("catalog_category_product_index"),"curw"=>$this->tablename("url_rewrite"));
+        $this->tns = array("cpe" => $this->tablename("catalog_product_entity"),
+                           "cce" => $this->tablename("catalog_category_entity"),"ccp" => $this->tablename("catalog_category_product"),
+                           "cpw" => $this->tablename("catalog_product_website"),"cs" => $this->tablename("store"),
+                           "csg" => $this->tablename("store_group"),"cpev" => $this->tablename("catalog_product_entity_varchar"),
+                           "cpei" => $this->tablename("catalog_product_entity_int"),
+                           "ccev" => $this->tablename("catalog_category_entity_varchar"),"ea" => $this->tablename("eav_attribute"),
+                           "ccpi" => $this->tablename("catalog_category_product_index"),"curw" => $this->tablename("url_rewrite"));
         $inf = $this->getAttrInfo("visibility");
         if ($inf == null) {
             $this->initAttrInfos(array("visibility"));
@@ -171,7 +171,7 @@ class ItemIndexer extends Magmi_ItemProcessor
                 }
                 // make string with that
                 $namestr = implode("/", $names);
-                if ($namestr!="") {
+                if ($namestr != "") {
                     // build category url key (allow / in slugging)
                     $curlk = Slugger::slug($namestr, true);
 
@@ -212,7 +212,7 @@ class ItemIndexer extends Magmi_ItemProcessor
                         $names[] = $cnames[$cpid];
                         // make string with that
                         $namestr = implode("/", $names);
-                        $urlend = $this->getParam("OTFI:useurlending", 1)==1?$this->getParam("OTFI:urlending", ".html"):"";
+                        $urlend = $this->getParam("OTFI:useurlending", 1) == 1 ? $this->getParam("OTFI:urlending", ".html") : "";
                         // build category url key (allow / in slugging)
                         $curlk = Slugger::slug($namestr, true) . $urlend;
                         $cdata = array('category', $cpid, $storeid,"catalog/category/view/id/$cpid","$curlk", 0, 1);
@@ -229,7 +229,7 @@ class ItemIndexer extends Magmi_ItemProcessor
         }
     }
 
-    public function builProductUrlRewrite($pid, $dorewrite=false, $store)
+    public function builProductUrlRewrite($pid, $dorewrite = false, $store)
     {
 
         //new url
@@ -254,9 +254,9 @@ class ItemIndexer extends Magmi_ItemProcessor
                 $pname = $row["value"];
             }
         }
-        $baseurl=(isset($pburlk) ? $pburlk : Slugger::slug($pname));
+        $baseurl = (isset($pburlk) ? $pburlk : Slugger::slug($pname));
         // if we've got an url key use it, otherwise , make a slug from the product name as url key
-        $urlend =$this->getParam("OTFI:useurlending", 1)==1?$this->getParam("OTFI:urlending", ".html"):"";
+        $urlend = $this->getParam("OTFI:useurlending", 1) == 1 ? $this->getParam("OTFI:urlending", ".html") : "";
         //check duplicates
         if (!isset($this->usedurls)) {
             $this->usedurls = array();
@@ -274,7 +274,7 @@ class ItemIndexer extends Magmi_ItemProcessor
             $index++;
             $candidate = $baseurl.'-'.$index.$urlend;
         }
-        $purlk=$candidate;
+        $purlk = $candidate;
         $this->usedurls[$candidate] = $pid;
 
         if ($dorewrite) {
@@ -294,7 +294,7 @@ class ItemIndexer extends Magmi_ItemProcessor
                                                   AND curw.store_id=cs.store_id AND curw.request_path!=?
                				 WHERE cpe.entity_id=?";
             //read rewrites
-            $rewrites=$this->selectAll($rewurlsql, array($purlk, $purlk, $pid));
+            $rewrites = $this->selectAll($rewurlsql, array($purlk, $purlk, $pid));
         }
         // delete old "system" url rewrite entries for product
         $sql = "DELETE FROM {$this->tns["curw"]} WHERE entity_id=? AND entity_type = 'product' AND is_autogenerated=1";
@@ -324,16 +324,16 @@ class ItemIndexer extends Magmi_ItemProcessor
         $this->insert($sqlprod, array($purlk, $pid));
 
         //insert rewrites
-        if ($dorewrite && count($rewrites)>0) {
-            $fields=$this->arr2values(array_values($rewrites[0]));
-            $data=array();
-            $ins=array();
-            for ($i=0;$i<count($rewrites);$i++) {
-                $data=array_merge($data, array_values($rewrites[$i]));
-                $ins[]="($fields)";
+        if ($dorewrite && count($rewrites) > 0) {
+            $fields = $this->arr2values(array_values($rewrites[0]));
+            $data = array();
+            $ins = array();
+            for ($i = 0;$i < count($rewrites);$i++) {
+                $data = array_merge($data, array_values($rewrites[$i]));
+                $ins[] = "($fields)";
             }
             //insert rewrites
-            $sqlrew="INSERT INTO {$this->tns["curw"]} (entity_type,entity_id,store_id,target_path,request_path,redirect_type,is_autogenerated) VALUES ".implode(",", $ins)." ON DUPLICATE KEY UPDATE request_path=VALUES(`request_path`)";
+            $sqlrew = "INSERT INTO {$this->tns["curw"]} (entity_type,entity_id,store_id,target_path,request_path,redirect_type,is_autogenerated) VALUES ".implode(",", $ins)." ON DUPLICATE KEY UPDATE request_path=VALUES(`request_path`)";
             $this->insert($sqlrew, $data);
             unset($ins);
             unset($data);
@@ -395,8 +395,8 @@ class ItemIndexer extends Magmi_ItemProcessor
     public function processItemAfterImport(&$item, $params = null)
     {
         if (count($item) > 0) {
-            $pid=$params["product_id"];
-            $dorewrite=isset($item["url_rewrite"]) && $item["url_rewrite"]==1;
+            $pid = $params["product_id"];
+            $dorewrite = isset($item["url_rewrite"]) && $item["url_rewrite"] == 1;
             $this->buildCatalogCategoryProductIndex($pid);
             $this->buildUrlRewrite($pid, $dorewrite, $item['store']);
         }

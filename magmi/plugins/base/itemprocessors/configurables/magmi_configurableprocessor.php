@@ -13,8 +13,8 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
     /* Plugin info declaration */
     public function getPluginInfo()
     {
-        return array("name"=>"Configurable Item processor","author"=>"Dweeves","version"=>"1.3.7a",
-            "url"=>$this->pluginDocUrl("Configurable_Item_processor"));
+        return array("name" => "Configurable Item processor","author" => "Dweeves","version" => "1.3.7a",
+            "url" => $this->pluginDocUrl("Configurable_Item_processor"));
     }
 
     /**
@@ -249,15 +249,15 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
                 $data = array();
                 $ins = array();
                 //option value list
-                $optvlist=array();
+                $optvlist = array();
                 //option prices list
-                $optplist=array();
+                $optplist = array();
                 //retrieve all priced options at once to avoid duplication of existing
                 //due to cache miss
                 foreach ($this->_optpriceinfo[$confopt] as $opdef) {
                     $opinf = explode(":", $opdef);
-                    $vlist=explode('//', $opinf[0]);
-                    $optvlist=array_merge($optvlist, $vlist);
+                    $vlist = explode('//', $opinf[0]);
+                    $optvlist = array_merge($optvlist, $vlist);
                     if (count($opinf) < 3) {
                         // if optpriceinfo has no is_percent, force to 0
                         $opinf[] = 0;
@@ -266,11 +266,11 @@ class Magmi_ConfigurableItemProcessor extends Magmi_ItemProcessor
                         $optplist[$v] = array($opinf[1],$opinf[2]);
                     }
                 }
-                $optvlist=array_unique($optvlist);
+                $optvlist = array_unique($optvlist);
                 $optids = $this->getOptionIds($attrid, 0, $optvlist);
                 unset($optvlist);
 
-                foreach ($optids as $val=>$optid) {
+                foreach ($optids as $val => $optid) {
                     // generate price info for each given website
                     foreach ($wsids as $wsid) {
                         $data[] = $psaid;
