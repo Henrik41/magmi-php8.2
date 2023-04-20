@@ -52,4 +52,4 @@ Force usage of magento admin login.
 magmi-git 0.7.23
 ===
 
-The [official Magmi Wiki](http://wiki.magmi.org/) is still hosted at SourceForge.
+The [official Magmi Wiki](http://wiki.magmi.org/) is still hosted at SourceForge.# magmi-php8.2
