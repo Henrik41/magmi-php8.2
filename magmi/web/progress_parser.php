@@ -22,7 +22,8 @@ class ProgressParser
 
     public function setFile($parsedfile)
     {
-        $this->_data = file_get_contents($parsedfile);
+         $this->_data = file_get_contents($parsedfile);    // this path points to a file
+
     }
 
     public function parse()

@@ -1834,6 +1834,9 @@ class Magmi_ProductImportEngine extends Magmi_Engine
         }
         $csit = $this->tablename("cataloginventory_stock_item");
         $css = $this->tablename("cataloginventory_stock_status");
+        $isi = $this->tablename("inventory_source_item");
+        $cpe = $this->tablename("catalog_product_entity");
+
         // alculate is_in_stock flag
         if (isset($item["qty"])) {
             if (!isset($item["manage_stock"])) {
@@ -1853,6 +1856,9 @@ class Magmi_ProductImportEngine extends Magmi_Engine
         $sql = "INSERT IGNORE INTO `$csit` (product_id,stock_id) VALUES (?,?)";
         $this->insert($sql, array($pid, $stock_id));
 
+ //       $sql = "INSERT IGNORE INTO `$isi` (source_code, sku, quantity, status) select 'default', sku, qty, stock_status from (`$css` as lg join `$cpe` as prd on((lg.product_id = prd.entity_id)))";
+ //       $this->insert($sql);
+
         if (count($common) > 0) {
             $stockvals = $this->filterkvarr($item, $common);
 
@@ -1863,12 +1869,15 @@ class Magmi_ProductImportEngine extends Magmi_Engine
 
                 // if magmi_qty_absolute flag is not set, then use standard "relative" qty parsing.
                 if (!isset($item["magmi_qty_absolute"]) || $item["magmi_qty_absolute"] == 0) {
-                    // test for relative qty
-                    if ($item["qty"][0] == "+" || $item["qty"][0] == "-") {
-                        $relqty = getRelative($item["qty"]);
-                    }
+                  // test for relative qty
+                  //  PHP 8.1 change - test for array - we get an error if $item["qty"] is not an array 
+                	if (is_array($item["qty"])) {
+                  	if ($item["qty"][0] == "+" || $item["qty"][0] == "-") {
+                     		$relqty = getRelative($item["qty"]);
+                  	}
+                	} 
                 }
-                // if relative qty
+		// if relative qty
                 if ($relqty != null) {
                     // update UPDATE statement value affectation
                     $svstr = preg_replace("/(^|,)qty=\?/", "$1qty=qty$relqty?", $svstr);

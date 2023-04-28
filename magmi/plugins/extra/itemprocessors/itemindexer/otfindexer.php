@@ -229,7 +229,7 @@ class ItemIndexer extends Magmi_ItemProcessor
         }
     }
 
-    public function builProductUrlRewrite($pid, $dorewrite = false, $store)
+    public function builProductUrlRewrite($pid, $store, $dorewrite = false)
     {
 
         //new url
@@ -342,9 +342,9 @@ class ItemIndexer extends Magmi_ItemProcessor
         return $purlk;
     }
 
-    public function buildUrlRewrite($pid, $dorewrite = false, $store = 'admin')
+    public function buildUrlRewrite($pid, $store = 'admin', $dorewrite = false)
     {
-        $purlk = $this->builProductUrlRewrite($pid, $dorewrite, $store);
+        $purlk = $this->builProductUrlRewrite($pid, $store, $dorewrite);
         if ($this->getParam("OTFI:usecatinurl") && !is_null($purlk)) {
             $this->buildUrlCatProdRewrite($pid, $purlk);
         }

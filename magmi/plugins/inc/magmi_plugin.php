@@ -143,7 +143,7 @@ abstract class Magmi_Plugin extends Magmi_Mixin
 
     public function fixListParam($pvalue)
     {
-        $iarr = explode(",", $pvalue);
+        $iarr = explode(",", $pvalue ?? '');
         $oarr = array();
         foreach ($iarr as $v) {
             if ($v != "") {

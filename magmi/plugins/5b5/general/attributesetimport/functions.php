@@ -83,7 +83,7 @@ function options($self, $title, $prefix, $entityName, $withCsvOptions, $withMagm
         ?><h3><?php echo $title ?></h3><?php
     }
     if ($withEnable) {
-        checkbox($self, $prefix, 'enable', true, "Enable ${entityName} import");
+        checkbox($self, $prefix, 'enable', true, "Enable {$entityName} import");
         startDiv($self, $prefix, 'enabled', $self->getParam($prefix.":enable", "off") == "on");
     }
     if ($withCsvOptions) {
@@ -97,19 +97,19 @@ function options($self, $title, $prefix, $entityName, $withCsvOptions, $withMagm
     if ($prefix == '5B5AAI') {
         textarea($self, $prefix, 'default_rows', $default_rows_for_sets, "Add these attribute associations to given CSV data, '*' for attribute set name  means 'for each attribute set from given CSV' (Format: CSV with titles, spearator ',', enclosure '\"').");
     }
-    checkbox($self, $prefix, 'prune', true, "Prune ${entityName}s which are not in $sourceText from database");
+    checkbox($self, $prefix, 'prune', true, "Prune {$entityName}s which are not in $sourceText from database");
     startDiv($self, $prefix, 'prune_opts');
     if ($prefix == '5B5ATI' || $prefix == '5B5AAI') {
         checkbox($self, $prefix, 'prune_keep_system_attributes', true, "Dont touch non-user attributes when pruning.");
     }
-    text($self, $prefix, 'prune_only', '', "prune only ${entityName}s matching regexp");
-    text($self, $prefix, 'prune_keep', $pruneKeepDefaultValue, "additionally, keep following ${entityName}s when pruning, even if not given in $sourceText (comma-separated)");
+    text($self, $prefix, 'prune_only', '', "prune only {$entityName}s matching regexp");
+    text($self, $prefix, 'prune_keep', $pruneKeepDefaultValue, "additionally, keep following {$entityName}s when pruning, even if not given in $sourceText (comma-separated)");
     endDiv($self);
     if ($withMagmiDelete) {
-        checkbox($self, $prefix, 'magmi_delete', true, "Delete ${entityName}s marked \"magmi:delete\" = 1");
+        checkbox($self, $prefix, 'magmi_delete', true, "Delete {$entityName}s marked \"magmi:delete\" = 1");
     }
-    checkbox($self, $prefix, 'create', true, "Create ${entityName}s from $sourceText which are not in database");
-    checkbox($self, $prefix, 'update', true, "Update ${entityName}s from $sourceText which are already in database");
+    checkbox($self, $prefix, 'create', true, "Create {$entityName}s from $sourceText which are not in database");
+    checkbox($self, $prefix, 'update', true, "Update {$entityName}s from $sourceText which are already in database");
     if ($prefix == '5B5ASI') {
         startDiv($self, $prefix, 'attribute_groups');
         options($self, null, '5B5AGI', 'attribute group', false, false, false, false, "General,Prices,Meta Information,Images,Recurring Profile,Design,Gift Options", '"magmi:groups"', $plugin);

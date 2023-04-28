@@ -34,12 +34,24 @@ class DirbasedConfig extends Properties
         return $this->inifile;
     }
 
-    public function getLastSaved($fmt)
+    /**
+		* Get the file last saved date and time of a file
+ 		*
+ 		* @param string $fmt - any of the PHP time format strings documented here
+ 		* https://www.php.net/manual/en/datetime.format.php 
+ 		* 
+	 	* A sensible one to use would be "r" producing a » RFC 2822/» RFC 5322 formatted date
+ 		* Example of the returned sting: Thu, 21 Dec 2000 16:01:07 +0200
+ 		*
+ 		* @return string
+ 		*/    
+    
+    public function getLastSaved($fmt = "r")
     {
         if (file_exists($this->inifile)) {
-            $lastsaved = strftime($fmt, filemtime($this->inifile));
+            $lastsaved=date($fmt, filemtime($this->inifile));
         } else {
-            $lastsaved = "never";
+            $lastsaved="never";
         }
         return $lastsaved;
     }

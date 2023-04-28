@@ -49,7 +49,7 @@ class MultiDimArray extends ArrayIterator
      * (non-PHPdoc)
      * @see ArrayIterator::offsetGet()
      */
-    public function offsetGet($name)
+    public function offsetGet($name):bool
     {
         if (!is_array($name)) {
             return parent::offsetGet($name);
@@ -75,6 +75,7 @@ class MultiDimArray extends ArrayIterator
      *
      * @see ArrayIterator::offsetSet()
      */
+#[\ReturnTypeWillChange]
     public function offsetSet($name, $value)
     {
         if (!is_array($name)) {
@@ -104,7 +105,7 @@ class MultiDimArray extends ArrayIterator
      * (non-PHPdoc)
      * @see ArrayIterator::offsetExists()
      */
-    public function offsetExists($name)
+    public function offsetExists($name):bool
     {
         return $this->offsetExistsPartly($name, false);
     }
@@ -146,6 +147,7 @@ class MultiDimArray extends ArrayIterator
     /**
      * @param string $name
      */
+#[\ReturnTypeWillChange]
     public function offsetUnset($name)
     {
         if (!is_array($name)) {
@@ -170,14 +172,14 @@ class MultiDimArray extends ArrayIterator
         }
     }
 
-    public function rewind()
+    public function rewind() : void
     {
         $this->_iterator = null;
         parent::rewind();
         $this->setInner();
     }
 
-    public function current()
+    public function current(): mixed
     {
         if (isset($this->_inner)) {
             return $this->_inner->current();
@@ -201,7 +203,7 @@ class MultiDimArray extends ArrayIterator
         $this->setInner();
     }
 
-    public function next()
+    public function next(): void
     {
         if (isset($this->_inner)) {
             $this->_inner->next();
@@ -212,7 +214,7 @@ class MultiDimArray extends ArrayIterator
             $this->doNext();
         }
     }
-    public function key()
+    public function key(): string
     {
         if (isset($this->_inner)) {
             $innerKey = $this->_inner->key();
@@ -223,7 +225,7 @@ class MultiDimArray extends ArrayIterator
         }
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return parent::valid();
     }
@@ -239,7 +241,7 @@ class MultiDimArray extends ArrayIterator
         }
     }
 
-    public function count($mode = null)
+    public function count($mode = null): int
     {
         $count = 0;
         foreach ($this as $item) {

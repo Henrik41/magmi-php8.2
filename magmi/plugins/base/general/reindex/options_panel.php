@@ -18,7 +18,7 @@
 	<ul>
 	<?php
 $idxarr = explode(",", $this->_plugin->getIndexList());
-$indexes = explode(",", $this->getParam("REINDEX:indexes"));
+$indexes = explode(",", $this->getParam("REINDEX:indexes") ?? '');
 foreach ($idxarr as $indexname) {
     ?>
 		<li><input type="checkbox" name="<?php echo $indexname?>"

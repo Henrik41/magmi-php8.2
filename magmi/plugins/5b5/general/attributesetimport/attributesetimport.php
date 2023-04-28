@@ -498,7 +498,7 @@ class AttributeSetImporter extends Magmi_GeneralImportPlugin
 
         $givenRecordCount = $csvreader->getLinesCount();
         if ($verbose) {
-            $this->log("Will update ${entityName}s...($givenRecordCount records given)", 'startup');
+            $this->log("Will update {$entityName}s...($givenRecordCount records given)", 'startup');
         }
 
         // fetch data from database: result is a MultiDimArray with the record "names" as key(s)
